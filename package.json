@@ -3,6 +3,10 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "build": "mkdir -p dist && cp index.html dist/"
+    "build": "mkdir -p dist && cp index.html dist/",
+    "dev": "http-server dist"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
   }
 }
