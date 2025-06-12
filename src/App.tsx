@@ -1,4 +1,3 @@
-import React from 'react'
 import EduWebLanding from './pages/EduWebLanding'
 
 function App() {
