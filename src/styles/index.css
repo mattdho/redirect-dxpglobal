@@ -1,0 +1,133 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --jakala-blue: #040066;
+  --jakala-blue-light: #040AB2;
+  --jakala-blue-medium: #1941FA;
+  --jakala-blue-lighter: #3C82FF;
+  --jakala-red: #F00A0A;
+  --jakala-red-light: #FF3F3F;
+  --jakala-red-medium: #F16A6A;
+  --jakala-red-lighter: #FF8982;
+  --jakala-grey-1: #F5F5F5;
+  --jakala-grey-2: #E8E8E8;
+  --jakala-grey-3: #CFCFCF;
+  --jakala-grey-4: #B5B5B5;
+}
+
+body {
+  font-family: "Raleway", sans-serif;
+  color: var(--jakala-blue);
+}
+
+h1, h2, h3, h4, h5, h6, blockquote {
+  font-family: "Merriweather", serif;
+}
+
+.smooth-scroll {
+  scroll-behavior: smooth;
+}
+
+/* Custom brand button styles */
+.btn-primary {
+  background-color: var(--jakala-red);
+  color: white;
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
+  padding: 16px 32px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+}
+
+.btn-primary:hover {
+  background-color: var(--jakala-red-lighter);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(240, 10, 10, 0.3);
+}
+
+.btn-secondary {
+  background-color: var(--jakala-red-light);
+  color: white;
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+}
+
+.btn-secondary:hover {
+  background-color: var(--jakala-red-medium);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(255, 63, 63, 0.3);
+}
+
+/* Modal styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(4, 0, 102, 0.8);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 12px;
+  padding: 32px;
+  max-width: 500px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+/* QR Code styling */
+.qr-code {
+  border: 2px solid var(--jakala-grey-3);
+  border-radius: 8px;
+  padding: 16px;
+  background: white;
+}
+
+/* Navigation hover effects */
+.nav-link {
+  color: var(--jakala-blue-lighter);
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: white;
+}
+
+/* Hero background with overlay */
+.hero-bg {
+  background-image: linear-gradient(rgba(4, 0, 102, 0.7), rgba(4, 0, 102, 0.7)),
+                    url('https://images.pexels.com/photos/1181534/pexels-photo-1181534.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+@media (max-width: 768px) {
+  .hero-bg {
+    background-attachment: scroll;
+  }
+}
