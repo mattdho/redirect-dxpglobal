@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "build": "mkdir -p dist && cp index.html dist/",
+    "build": "mkdir -p dist && cp index.html dist/ && mkdir -p dist/events/2025/eduweb && cp src/events/2025/eduweb/index.html dist/events/2025/eduweb/",
     "dev": "http-server dist"
   },
   "devDependencies": {
