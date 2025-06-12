@@ -47,23 +47,39 @@
               'merriweather': ['Merriweather', 'serif'],
             },
             colors: {
-              'jblue': {
-                'dark': '#040066',
-                'primary': '#040AB2',
-                'medium': '#1941FA',
-                'light': '#3C82FF'
+              'jakala': {
+                'blue': '#040066',
+                'blue-light': '#1941FA',
+                'red': '#F00A0A',
+                'red-hover': '#FF3F3F',
+                'red-light': '#F16A6A',
+                'red-lighter': '#FF8982'
               },
-              'jred': {
-                'primary': '#F00A0A',
-                'medium': '#FF3F3F',
-                'light': '#F16A6A',
-                'lighter': '#FF8982'
-              },
-              'jgrey': {
+              'grey': {
                 'lightest': '#F5F5F5',
                 'light': '#E8E8E8',
                 'medium': '#CFCFCF',
                 'dark': '#B5B5B5'
+              }
+            },
+            animation: {
+              'fade-in-up': 'fadeInUp 0.8s ease-out',
+              'fade-in': 'fadeIn 0.6s ease-out',
+              'slide-up': 'slideUp 0.4s ease-out',
+              'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            },
+            keyframes: {
+              fadeInUp: {
+                '0%': { opacity: '0', transform: 'translateY(30px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' }
+              },
+              fadeIn: {
+                '0%': { opacity: '0' },
+                '100%': { opacity: '1' }
+              },
+              slideUp: {
+                '0%': { transform: 'translateY(100%)' },
+                '100%': { transform: 'translateY(0)' }
               }
             }
           }
@@ -72,46 +88,58 @@
     </script>
     
     <style>
+      :root {
+        --jakala-blue: #040066;
+        --jakala-red: #F00A0A;
+        --jakala-red-hover: #FF3F3F;
+        --grey-light: #F5F5F5;
+        --grey-mid: #E8E8E8;
+      }
+
       body {
         font-family: "Raleway", sans-serif;
-        color: #040066;
+        color: var(--jakala-blue);
+        overflow-x: hidden;
       }
+      
       h1, h2, h3, h4, h5, h6 {
         font-family: "Merriweather", serif;
       }
       
-      .btn-primary {
-        background-color: #F00A0A;
-        color: #FFFFFF;
-        padding: 12px 24px;
-        border-radius: 6px;
-        font-weight: 600;
-        text-decoration: none;
-        display: inline-block;
-        transition: all 0.3s ease;
+      .hero-text-shadow {
+        text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
       }
-      .btn-primary:hover {
-        background-color: #FF3F3F;
-        transform: translateY(-1px);
+      
+      .btn {
+        background-color: var(--jakala-red);
+        color: white;
+        padding: 12px 28px;
+        font-weight: 600;
+        border-radius: 8px;
+        transition: all 0.2s ease;
+        display: inline-block;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+      }
+      
+      .btn:hover {
+        background-color: var(--jakala-red-hover);
+        transform: scale(1.05);
+        box-shadow: 0 8px 25px rgba(240, 10, 10, 0.3);
       }
       
       .btn-secondary {
-        background-color: #F16A6A;
-        color: #FFFFFF;
-        padding: 12px 24px;
-        border-radius: 6px;
-        font-weight: 600;
-        text-decoration: none;
-        display: inline-block;
-        transition: all 0.3s ease;
+        background-color: var(--jakala-red-light, #F16A6A);
       }
+      
       .btn-secondary:hover {
-        background-color: #FF8982;
-        transform: translateY(-1px);
+        background-color: var(--jakala-red-lighter, #FF8982);
       }
       
       .hero-bg {
-        background: linear-gradient(135deg, #040066 0%, #1941FA 100%);
+        background: linear-gradient(135deg, var(--jakala-blue) 0%, #1941FA 100%);
         position: relative;
         overflow: hidden;
       }
@@ -125,36 +153,80 @@
         bottom: 0;
         background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
         opacity: 0.3;
+        animation: pulse 4s ease-in-out infinite;
       }
       
-      .section-padding {
-        padding: 4rem 0;
+      .glassmorphism {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
       }
       
-      .qr-code {
-        width: 120px;
-        height: 120px;
-        background: #fff;
-        border: 2px solid #E8E8E8;
-        border-radius: 8px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 12px;
-        color: #666;
-        text-align: center;
+      .card-hover {
+        transition: all 0.3s ease;
       }
       
-      .icon-booth {
-        background: #F00A0A;
-        color: white;
-        width: 48px;
-        height: 48px;
+      .card-hover:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      }
+      
+      .modal-overlay {
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(4px);
+      }
+      
+      .modal-content {
+        transform: translateY(100%);
+        opacity: 0;
+        transition: all 0.3s ease;
+      }
+      
+      .modal-content.show {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      
+      .fade-in-section {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s ease;
+      }
+      
+      .fade-in-section.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      
+      .speaker-avatar {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, var(--jakala-blue), var(--jakala-red));
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 20px;
+        color: white;
+        font-weight: 600;
+        font-size: 18px;
+        margin-right: 12px;
+        flex-shrink: 0;
+      }
+      
+      .scroll-arrow {
+        animation: bounce 2s infinite;
+      }
+      
+      @keyframes bounce {
+        0%, 20%, 50%, 80%, 100% {
+          transform: translateY(0);
+        }
+        40% {
+          transform: translateY(-10px);
+        }
+        60% {
+          transform: translateY(-5px);
+        }
       }
     </style>
 </head>
@@ -167,96 +239,156 @@
     <!-- End Google Tag Manager (noscript) -->
 
     <!-- Hero Section -->
-    <section class="hero-bg text-white section-padding relative">
+    <section class="hero-bg text-white min-h-screen flex items-center justify-center relative">
         <div class="container mx-auto px-4 relative z-10">
-            <div class="max-w-4xl mx-auto text-center">
-                <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+            <div class="max-w-5xl mx-auto text-center">
+                <h1 class="text-6xl md:text-7xl font-bold mb-8 leading-tight hero-text-shadow animate-fade-in-up">
                     Join Jakala at EduWeb 2025
                 </h1>
-                <h2 class="text-2xl md:text-3xl mb-8 opacity-90 font-light">
+                <h2 class="text-2xl md:text-4xl mb-12 opacity-90 font-light animate-fade-in-up" style="animation-delay: 0.2s;">
                     Reimagining Digital Experience in Higher Education
                 </h2>
-                <a href="#event" class="btn-primary text-lg inline-block">
+                <button onclick="openRSVPModal()" class="btn text-xl animate-fade-in-up hover:scale-105" style="animation-delay: 0.4s;">
                     RSVP for Our Wine & Strategy Event
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Where to Find Us Section -->
-    <section class="section-padding" style="background-color: #E8E8E8;">
-        <div class="container mx-auto px-4">
-            <div class="max-w-4xl mx-auto text-center">
-                <h2 class="text-3xl font-bold mb-8 text-jblue-dark">Where to Find Us</h2>
-                <div class="flex flex-col md:flex-row items-center justify-center gap-8">
-                    <div class="flex items-center gap-4">
-                        <div class="icon-booth">📍</div>
-                        <div class="text-left">
-                            <h3 class="text-xl font-semibold text-jblue-dark">Visit us at</h3>
-                            <p class="text-lg text-jblue-primary">Booth 24</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-4">
-                        <div class="icon-booth">🕒</div>
-                        <div class="text-left">
-                            <h3 class="text-xl font-semibold text-jblue-dark">Conference Dates</h3>
-                            <p class="text-lg text-jblue-primary">July 15-17, 2025</p>
-                        </div>
-                    </div>
+                </button>
+                
+                <!-- Scroll Arrow -->
+                <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 scroll-arrow">
+                    <svg class="w-6 h-6 text-white opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                    </svg>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Session Section -->
-    <section class="section-padding bg-white">
+    <!-- Info Snapshot Section -->
+    <section class="py-20 bg-gradient-to-br from-grey-lightest to-grey-light fade-in-section">
         <div class="container mx-auto px-4">
             <div class="max-w-6xl mx-auto">
-                <div class="text-center mb-12">
-                    <h2 class="text-4xl font-bold mb-4 text-jblue-dark">Session</h2>
-                    <h3 class="text-2xl text-jblue-primary mb-8">Boosting Applications with a Modern Digital Experience</h3>
-                </div>
-                
-                <div class="grid md:grid-cols-2 gap-12 items-center">
-                    <div>
-                        <div class="bg-jgrey-lightest p-6 rounded-lg mb-6">
-                            <h4 class="text-xl font-semibold mb-3 text-jblue-dark">Session Details</h4>
-                            <div class="space-y-2 text-jblue-primary">
-                                <p><strong>Date:</strong> July 15, 2025</p>
-                                <p><strong>Time:</strong> 2:45–3:45 p.m.</p>
-                                <p><strong>Location:</strong> Rhode Island Room</p>
+                <h2 class="text-4xl font-bold text-center mb-16 text-jakala-blue">Where to Find Us</h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Booth Info Card -->
+                    <div class="bg-white rounded-xl shadow-lg p-8 card-hover glassmorphism">
+                        <div class="flex items-center mb-6">
+                            <div class="w-16 h-16 bg-jakala-red rounded-full flex items-center justify-center text-white text-2xl mr-4">
+                                📍
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-semibold text-jakala-blue">Visit us at</h3>
+                                <p class="text-xl text-jakala-blue-light font-medium">Booth 24</p>
                             </div>
                         </div>
-                        
-                        <div class="mb-6">
-                            <h4 class="text-xl font-semibold mb-3 text-jblue-dark">Speakers</h4>
-                            <ul class="space-y-2 text-jblue-primary">
-                                <li>• <strong>Mandee Englert</strong> - Jakala</li>
-                                <li>• <strong>Jim Nourse</strong> - Penn State</li>
-                                <li>• <strong>Chaney Moore</strong></li>
-                            </ul>
-                        </div>
-                        
-                        <div class="mb-8">
-                            <h4 class="text-xl font-semibold mb-3 text-jblue-dark">Session Summary</h4>
-                            <p class="text-jblue-primary leading-relaxed">
-                                Discover how Jakala transformed Penn State's undergraduate enrollment experience through strategic information architecture, 
-                                personalized content journeys, and modern digital experience design. Learn practical approaches to boosting application 
-                                rates and improving student engagement through data-driven digital transformation.
-                            </p>
-                        </div>
-                        
-                        <a href="#slides" class="btn-primary">Download Slides</a>
+                        <p class="text-grey-dark">Stop by our booth to see live demos of our higher education digital transformation solutions.</p>
                     </div>
                     
-                    <div class="text-center">
-                        <div class="qr-code mx-auto mb-4">
+                    <!-- Conference Dates Card -->
+                    <div class="bg-white rounded-xl shadow-lg p-8 card-hover glassmorphism">
+                        <div class="flex items-center mb-6">
+                            <div class="w-16 h-16 bg-jakala-red rounded-full flex items-center justify-center text-white text-2xl mr-4">
+                                🗓️
+                            </div>
                             <div>
-                                <div class="text-xs mb-2">QR Code</div>
-                                <div class="text-xs">jakala.com/higher-ed</div>
+                                <h3 class="text-2xl font-semibold text-jakala-blue">Conference Dates</h3>
+                                <p class="text-xl text-jakala-blue-light font-medium">July 15-17, 2025</p>
                             </div>
                         </div>
-                        <p class="text-sm text-jblue-primary">Scan for Higher Ed Solutions</p>
+                        <p class="text-grey-dark">Three days of insights, networking, and innovation in higher education technology.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Jakala Session Section -->
+    <section class="py-20 bg-white fade-in-section">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-5xl font-bold mb-6 text-jakala-blue">Our Session</h2>
+                    <h3 class="text-3xl text-jakala-blue-light mb-8">Boosting Applications with a Modern Digital Experience</h3>
+                </div>
+                
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <div>
+                        <!-- Session Details Card -->
+                        <div class="bg-grey-lightest rounded-xl p-8 mb-8 card-hover">
+                            <h4 class="text-2xl font-semibold mb-6 text-jakala-blue">Session Details</h4>
+                            <div class="space-y-4 text-jakala-blue">
+                                <div class="flex items-center">
+                                    <span class="w-6 h-6 bg-jakala-red rounded-full flex items-center justify-center text-white text-sm mr-3">📅</span>
+                                    <span><strong>Date:</strong> July 15, 2025</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="w-6 h-6 bg-jakala-red rounded-full flex items-center justify-center text-white text-sm mr-3">🕐</span>
+                                    <span><strong>Time:</strong> 2:45–3:45 p.m.</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="w-6 h-6 bg-jakala-red rounded-full flex items-center justify-center text-white text-sm mr-3">📍</span>
+                                    <span><strong>Location:</strong> Rhode Island Room</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Speakers -->
+                        <div class="mb-8">
+                            <h4 class="text-2xl font-semibold mb-6 text-jakala-blue">Featured Speakers</h4>
+                            <div class="space-y-4">
+                                <div class="flex items-center">
+                                    <div class="speaker-avatar">ME</div>
+                                    <div>
+                                        <p class="font-semibold text-jakala-blue">Mandee Englert</p>
+                                        <p class="text-grey-dark">Jakala</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="speaker-avatar">JN</div>
+                                    <div>
+                                        <p class="font-semibold text-jakala-blue">Jim Nourse</p>
+                                        <p class="text-grey-dark">Penn State</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="speaker-avatar">CM</div>
+                                    <div>
+                                        <p class="font-semibold text-jakala-blue">Chaney Moore</p>
+                                        <p class="text-grey-dark">Industry Expert</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Session Summary -->
+                        <details class="mb-8 bg-grey-lightest rounded-xl p-6">
+                            <summary class="text-xl font-semibold text-jakala-blue cursor-pointer hover:text-jakala-red transition-colors">
+                                Session Summary
+                            </summary>
+                            <div class="mt-4 text-jakala-blue leading-relaxed">
+                                <p>Discover how Jakala transformed Penn State's undergraduate enrollment experience through strategic information architecture, personalized content journeys, and modern digital experience design. Learn practical approaches to boosting application rates and improving student engagement through data-driven digital transformation.</p>
+                            </div>
+                        </details>
+                        
+                        <a href="#slides" class="btn mr-4">Download Slides</a>
+                        <a href="https://www.jakala.com/higher-education" class="btn btn-secondary">View EDU Work</a>
+                    </div>
+                    
+                    <!-- Visual Element -->
+                    <div class="text-center">
+                        <div class="bg-gradient-to-br from-jakala-blue to-jakala-blue-light rounded-2xl p-12 text-white">
+                            <div class="text-6xl mb-6">🎓</div>
+                            <h4 class="text-2xl font-bold mb-4">Higher Education Innovation</h4>
+                            <p class="text-lg opacity-90 mb-6">Transforming student experiences through strategic digital design</p>
+                            <div class="flex justify-center space-x-4">
+                                <div class="bg-white/20 rounded-lg px-4 py-2">
+                                    <div class="text-2xl font-bold">25%</div>
+                                    <div class="text-sm">Application Increase</div>
+                                </div>
+                                <div class="bg-white/20 rounded-lg px-4 py-2">
+                                    <div class="text-2xl font-bold">40%</div>
+                                    <div class="text-sm">Engagement Boost</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -264,71 +396,77 @@
     </section>
 
     <!-- Off-Site Event Section -->
-    <section id="event" class="section-padding" style="background: linear-gradient(135deg, #F5F5F5 0%, #E8E8E8 100%);">
+    <section class="py-20 bg-gradient-to-br from-grey-light to-grey-medium fade-in-section">
         <div class="container mx-auto px-4">
             <div class="max-w-6xl mx-auto">
-                <div class="text-center mb-12">
-                    <h2 class="text-4xl font-bold mb-4 text-jblue-dark">Off-Site Event</h2>
-                    <h3 class="text-2xl text-jred-primary mb-8">An Evening Discussing Digital Impact in Higher Ed</h3>
+                <div class="text-center mb-16">
+                    <h2 class="text-5xl font-bold mb-6 text-jakala-blue">Off-Site Event</h2>
+                    <h3 class="text-3xl text-jakala-red mb-8">An Evening Discussing Digital Impact in Higher Ed</h3>
                 </div>
                 
-                <div class="grid md:grid-cols-2 gap-12 items-center">
-                    <div>
-                        <div class="bg-white p-8 rounded-lg shadow-lg">
-                            <h4 class="text-2xl font-semibold mb-6 text-jblue-dark">Event Details</h4>
-                            <div class="space-y-4 mb-8">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-6 h-6 bg-jred-primary rounded-full flex items-center justify-center text-white text-sm">📅</div>
-                                    <span class="text-jblue-primary"><strong>Date:</strong> Wednesday, July 17, 2025</span>
-                                </div>
-                                <div class="flex items-center gap-3">
-                                    <div class="w-6 h-6 bg-jred-primary rounded-full flex items-center justify-center text-white text-sm">🕐</div>
-                                    <span class="text-jblue-primary"><strong>Time:</strong> 5:30–7:30 p.m.</span>
-                                </div>
-                                <div class="flex items-center gap-3">
-                                    <div class="w-6 h-6 bg-jred-primary rounded-full flex items-center justify-center text-white text-sm">📍</div>
-                                    <span class="text-jblue-primary"><strong>Location:</strong> Grippy Tannin's, Portland, ME</span>
-                                </div>
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <!-- Event Details -->
+                    <div class="bg-white rounded-2xl shadow-xl p-10 card-hover">
+                        <h4 class="text-3xl font-semibold mb-8 text-jakala-blue">Event Details</h4>
+                        <div class="space-y-6 mb-10">
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 bg-jakala-red rounded-full flex items-center justify-center text-white text-sm mr-4">📅</div>
+                                <span class="text-lg text-jakala-blue"><strong>Date:</strong> Wednesday, July 17, 2025</span>
                             </div>
-                            
-                            <div class="mb-8">
-                                <h5 class="text-lg font-semibold mb-3 text-jblue-dark">Featured Panel</h5>
-                                <p class="text-jblue-primary mb-4">Join industry leaders from:</p>
-                                <div class="flex flex-wrap gap-2">
-                                    <span class="bg-jblue-light text-white px-3 py-1 rounded-full text-sm">Penn State</span>
-                                    <span class="bg-jblue-light text-white px-3 py-1 rounded-full text-sm">Princeton</span>
-                                    <span class="bg-jblue-light text-white px-3 py-1 rounded-full text-sm">Yale</span>
-                                </div>
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 bg-jakala-red rounded-full flex items-center justify-center text-white text-sm mr-4">🕐</div>
+                                <span class="text-lg text-jakala-blue"><strong>Time:</strong> 5:30–7:30 p.m.</span>
                             </div>
-                            
-                            <a href="#rsvp" class="btn-secondary w-full text-center block">Reserve Your Spot</a>
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 bg-jakala-red rounded-full flex items-center justify-center text-white text-sm mr-4">📍</div>
+                                <span class="text-lg text-jakala-blue"><strong>Location:</strong> Grippy Tannin's, Portland, ME</span>
+                            </div>
                         </div>
+                        
+                        <div class="mb-10">
+                            <h5 class="text-xl font-semibold mb-4 text-jakala-blue">Featured Panel</h5>
+                            <p class="text-jakala-blue mb-4">Join industry leaders from:</p>
+                            <div class="flex flex-wrap gap-3">
+                                <span class="bg-jakala-blue-light text-white px-4 py-2 rounded-full text-sm font-medium">Penn State</span>
+                                <span class="bg-jakala-blue-light text-white px-4 py-2 rounded-full text-sm font-medium">Princeton</span>
+                                <span class="bg-jakala-blue-light text-white px-4 py-2 rounded-full text-sm font-medium">Yale</span>
+                            </div>
+                        </div>
+                        
+                        <button onclick="openRSVPModal()" class="btn w-full text-center text-lg">
+                            Reserve Your Spot
+                        </button>
                     </div>
                     
-                    <div>
-                        <div class="bg-white p-8 rounded-lg shadow-lg">
-                            <h4 class="text-2xl font-semibold mb-6 text-jblue-dark">What to Expect</h4>
-                            <div class="space-y-6">
-                                <div class="flex items-start gap-4">
-                                    <div class="w-12 h-12 bg-jred-light rounded-full flex items-center justify-center text-white">🦞</div>
-                                    <div>
-                                        <h5 class="font-semibold text-jblue-dark mb-1">Authentic Maine Cuisine</h5>
-                                        <p class="text-sm text-jblue-primary">Fresh lobster rolls and local specialties</p>
-                                    </div>
+                    <!-- What to Expect -->
+                    <div class="bg-white rounded-2xl shadow-xl p-10 card-hover">
+                        <h4 class="text-3xl font-semibold mb-8 text-jakala-blue">What to Expect</h4>
+                        <div class="space-y-8">
+                            <div class="flex items-start">
+                                <div class="w-16 h-16 bg-jakala-red-light rounded-full flex items-center justify-center text-white text-2xl mr-6 flex-shrink-0">
+                                    🦞
                                 </div>
-                                <div class="flex items-start gap-4">
-                                    <div class="w-12 h-12 bg-jred-light rounded-full flex items-center justify-center text-white">🍷</div>
-                                    <div>
-                                        <h5 class="font-semibold text-jblue-dark mb-1">Premium Wine Selection</h5>
-                                        <p class="text-sm text-jblue-primary">Curated wines paired with gourmet appetizers</p>
-                                    </div>
+                                <div>
+                                    <h5 class="text-xl font-semibold text-jakala-blue mb-2">Authentic Maine Cuisine</h5>
+                                    <p class="text-grey-dark">Fresh lobster rolls and local specialties prepared by Portland's finest chefs</p>
                                 </div>
-                                <div class="flex items-start gap-4">
-                                    <div class="w-12 h-12 bg-jred-light rounded-full flex items-center justify-center text-white">💬</div>
-                                    <div>
-                                        <h5 class="font-semibold text-jblue-dark mb-1">Strategic Networking</h5>
-                                        <p class="text-sm text-jblue-primary">Connect with higher ed digital leaders</p>
-                                    </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-16 h-16 bg-jakala-red-light rounded-full flex items-center justify-center text-white text-2xl mr-6 flex-shrink-0">
+                                    🍷
+                                </div>
+                                <div>
+                                    <h5 class="text-xl font-semibold text-jakala-blue mb-2">Premium Wine Selection</h5>
+                                    <p class="text-grey-dark">Curated wines paired with gourmet appetizers and networking opportunities</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-16 h-16 bg-jakala-red-light rounded-full flex items-center justify-center text-white text-2xl mr-6 flex-shrink-0">
+                                    💬
+                                </div>
+                                <div>
+                                    <h5 class="text-xl font-semibold text-jakala-blue mb-2">Strategic Networking</h5>
+                                    <p class="text-grey-dark">Connect with higher ed digital leaders and industry innovators</p>
                                 </div>
                             </div>
                         </div>
@@ -339,15 +477,15 @@
     </section>
 
     <!-- Footer Section -->
-    <footer class="section-padding text-white" style="background-color: #040066;">
+    <footer class="py-16 text-white bg-jakala-blue fade-in-section">
         <div class="container mx-auto px-4">
             <div class="max-w-4xl mx-auto text-center">
-                <div class="mb-8">
-                    <div class="text-3xl font-bold mb-4">JAKALA</div>
-                    <p class="text-lg opacity-90 mb-8">
+                <div class="mb-12">
+                    <div class="text-4xl font-bold mb-6">JAKALA</div>
+                    <p class="text-xl opacity-90 mb-10 leading-relaxed">
                         Transforming digital experiences in higher education through data-driven innovation and strategic design.
                     </p>
-                    <a href="https://www.jakala.com/higher-education" class="btn-primary text-lg">
+                    <a href="https://www.jakala.com/higher-education" class="btn text-lg">
                         Explore our Higher Education Solutions
                     </a>
                 </div>
@@ -368,8 +506,146 @@
         </div>
     </footer>
 
-    <!-- Smooth Scrolling Script -->
+    <!-- RSVP Modal -->
+    <div id="rsvpModal" class="fixed inset-0 z-50 hidden modal-overlay">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="modal-content bg-white rounded-2xl shadow-2xl max-w-md w-full p-8">
+                <!-- Modal Header -->
+                <div class="flex justify-between items-center mb-8">
+                    <h3 class="text-2xl font-bold text-jakala-blue">Reserve Your Spot</h3>
+                    <button onclick="closeRSVPModal()" class="text-grey-dark hover:text-jakala-red transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                
+                <!-- RSVP Form -->
+                <form id="rsvpForm" data-netlify="true" name="eduweb-rsvp" class="space-y-6">
+                    <input type="hidden" name="form-name" value="eduweb-rsvp">
+                    
+                    <div>
+                        <label for="fullName" class="block text-sm font-medium text-jakala-blue mb-2">Full Name *</label>
+                        <input type="text" id="fullName" name="fullName" required 
+                               class="w-full px-4 py-3 border border-grey-medium rounded-lg focus:ring-2 focus:ring-jakala-red focus:border-transparent transition-all">
+                    </div>
+                    
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-jakala-blue mb-2">Email Address *</label>
+                        <input type="email" id="email" name="email" required 
+                               class="w-full px-4 py-3 border border-grey-medium rounded-lg focus:ring-2 focus:ring-jakala-red focus:border-transparent transition-all">
+                    </div>
+                    
+                    <div>
+                        <label for="organization" class="block text-sm font-medium text-jakala-blue mb-2">Organization *</label>
+                        <input type="text" id="organization" name="organization" required 
+                               class="w-full px-4 py-3 border border-grey-medium rounded-lg focus:ring-2 focus:ring-jakala-red focus:border-transparent transition-all">
+                    </div>
+                    
+                    <div>
+                        <label for="role" class="block text-sm font-medium text-jakala-blue mb-2">Role/Title *</label>
+                        <input type="text" id="role" name="role" required 
+                               class="w-full px-4 py-3 border border-grey-medium rounded-lg focus:ring-2 focus:ring-jakala-red focus:border-transparent transition-all">
+                    </div>
+                    
+                    <div>
+                        <label for="dietary" class="block text-sm font-medium text-jakala-blue mb-2">Dietary Restrictions (Optional)</label>
+                        <textarea id="dietary" name="dietary" rows="3" 
+                                  class="w-full px-4 py-3 border border-grey-medium rounded-lg focus:ring-2 focus:ring-jakala-red focus:border-transparent transition-all"
+                                  placeholder="Please let us know about any dietary restrictions or allergies..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn w-full text-lg">
+                        Confirm RSVP
+                    </button>
+                </form>
+                
+                <!-- Confirmation Screen (Hidden by default) -->
+                <div id="confirmationScreen" class="hidden text-center">
+                    <div class="text-6xl mb-6">✅</div>
+                    <h3 class="text-2xl font-bold text-jakala-blue mb-4">You're In!</h3>
+                    <p class="text-grey-dark mb-6">Thank you for your RSVP. We'll send you event details and reminders via email.</p>
+                    <button onclick="closeRSVPModal()" class="btn">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
     <script>
+        // RSVP Modal Functions
+        function openRSVPModal() {
+            const modal = document.getElementById('rsvpModal');
+            const modalContent = modal.querySelector('.modal-content');
+            
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modalContent.classList.add('show');
+            }, 10);
+            
+            // Track modal open
+            if (typeof dataLayer !== 'undefined') {
+                dataLayer.push({
+                    'event': 'rsvp_modal_open',
+                    'event_category': 'engagement',
+                    'event_label': 'RSVP Modal Opened'
+                });
+            }
+        }
+        
+        function closeRSVPModal() {
+            const modal = document.getElementById('rsvpModal');
+            const modalContent = modal.querySelector('.modal-content');
+            const form = document.getElementById('rsvpForm');
+            const confirmation = document.getElementById('confirmationScreen');
+            
+            modalContent.classList.remove('show');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                // Reset modal state
+                form.classList.remove('hidden');
+                confirmation.classList.add('hidden');
+                form.reset();
+            }, 300);
+        }
+        
+        // Close modal on overlay click
+        document.getElementById('rsvpModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeRSVPModal();
+            }
+        });
+        
+        // Form submission
+        document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Track form submission
+            if (typeof dataLayer !== 'undefined') {
+                dataLayer.push({
+                    'event': 'rsvp_form_submit',
+                    'event_category': 'conversion',
+                    'event_label': 'RSVP Form Submitted'
+                });
+            }
+            
+            // Simulate form submission (replace with actual submission logic)
+            setTimeout(() => {
+                document.getElementById('rsvpForm').classList.add('hidden');
+                document.getElementById('confirmationScreen').classList.remove('hidden');
+            }, 1000);
+            
+            // For Netlify Forms, you can uncomment the following:
+            // fetch('/', {
+            //     method: 'POST',
+            //     headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            //     body: new URLSearchParams(new FormData(this)).toString()
+            // }).then(() => {
+            //     document.getElementById('rsvpForm').classList.add('hidden');
+            //     document.getElementById('confirmationScreen').classList.remove('hidden');
+            // }).catch((error) => alert('Error submitting form'));
+        });
+        
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -385,7 +661,7 @@
         });
 
         // Track button clicks with GTM
-        document.querySelectorAll('.btn-primary, .btn-secondary').forEach(button => {
+        document.querySelectorAll('.btn').forEach(button => {
             button.addEventListener('click', function() {
                 if (typeof gtag !== 'undefined') {
                     gtag('event', 'click', {
@@ -393,8 +669,50 @@
                         'event_label': this.textContent.trim()
                     });
                 }
+                
+                if (typeof dataLayer !== 'undefined') {
+                    dataLayer.push({
+                        'event': 'cta_click',
+                        'cta_text': this.textContent.trim(),
+                        'cta_location': this.closest('section')?.querySelector('h2')?.textContent || 'Unknown'
+                    });
+                }
             });
+        });
+        
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all fade-in sections
+        document.querySelectorAll('.fade-in-section').forEach(section => {
+            observer.observe(section);
+        });
+        
+        // Track scroll depth
+        let maxScroll = 0;
+        window.addEventListener('scroll', function() {
+            const scrollPercent = Math.round((window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100);
+            if (scrollPercent > maxScroll && scrollPercent % 25 === 0) {
+                maxScroll = scrollPercent;
+                if (typeof dataLayer !== 'undefined') {
+                    dataLayer.push({
+                        'event': 'scroll_depth',
+                        'scroll_percent': scrollPercent
+                    });
+                }
+            }
         });
     </script>
 </body>
-</html> 
+</html>
