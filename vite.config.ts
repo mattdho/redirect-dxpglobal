@@ -4,12 +4,13 @@ import react from '@vitejs/plugin-react'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
+  base: '/events/2025/eduweb/',
   build: {
-    outDir: 'dist',
+    outDir: 'dist/events/2025/eduweb',
     assetsDir: 'assets',
   },
   server: {
     port: 3000,
-    open: true
+    open: '/events/2025/eduweb/'
   }
 })
