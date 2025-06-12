@@ -131,3 +131,40 @@ h1, h2, h3, h4, h5, h6, blockquote {
     background-attachment: scroll;
   }
 }
+
+/* Tailwind custom color classes */
+.text-jakala-blue { color: var(--jakala-blue); }
+.text-jakala-blue-light { color: var(--jakala-blue-light); }
+.text-jakala-blue-medium { color: var(--jakala-blue-medium); }
+.text-jakala-blue-lighter { color: var(--jakala-blue-lighter); }
+.text-jakala-red { color: var(--jakala-red); }
+.text-jakala-red-light { color: var(--jakala-red-light); }
+.text-jakala-red-medium { color: var(--jakala-red-medium); }
+.text-jakala-red-lighter { color: var(--jakala-red-lighter); }
+
+.bg-jakala-blue { background-color: var(--jakala-blue); }
+.bg-jakala-blue-light { background-color: var(--jakala-blue-light); }
+.bg-jakala-blue-medium { background-color: var(--jakala-blue-medium); }
+.bg-jakala-blue-lighter { background-color: var(--jakala-blue-lighter); }
+.bg-jakala-red { background-color: var(--jakala-red); }
+.bg-jakala-red-light { background-color: var(--jakala-red-light); }
+.bg-jakala-red-medium { background-color: var(--jakala-red-medium); }
+.bg-jakala-red-lighter { background-color: var(--jakala-red-lighter); }
+.bg-jakala-grey-1 { background-color: var(--jakala-grey-1); }
+.bg-jakala-grey-2 { background-color: var(--jakala-grey-2); }
+.bg-jakala-grey-3 { background-color: var(--jakala-grey-3); }
+.bg-jakala-grey-4 { background-color: var(--jakala-grey-4); }
+
+.border-jakala-blue-lighter { border-color: var(--jakala-blue-lighter); }
+.border-jakala-grey-3 { border-color: var(--jakala-grey-3); }
+
+.focus\:ring-jakala-blue-lighter:focus { 
+  --tw-ring-color: var(--jakala-blue-lighter); 
+}
+.focus\:border-jakala-blue-lighter:focus { 
+  border-color: var(--jakala-blue-lighter); 
+}
+
+.hover\:bg-jakala-grey-1:hover { 
+  background-color: var(--jakala-grey-1); 
+}
