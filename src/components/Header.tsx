@@ -1,56 +1,65 @@
-import React from 'react';
-import { Menu, X } from 'lucide-react';
+import React, { useState, useEffect } from 'react'
+import { Menu, X } from 'lucide-react'
 
-interface HeaderProps {
-  isMenuOpen: boolean;
-  setIsMenuOpen: (open: boolean) => void;
-}
+const Header: React.FC = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
 
-const Header: React.FC<HeaderProps> = ({ isMenuOpen, setIsMenuOpen }) => {
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setIsMenuOpen(false);
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50)
     }
-  };
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' })
+    }
+    setIsMenuOpen(false)
+  }
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-jakala-blue backdrop-blur-sm">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center py-4">
-          <div className="flex items-center">
-            <h1 className="text-2xl font-merriweather font-bold text-white">
-              Jakala
-            </h1>
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      isScrolled ? 'bg-white shadow-lg' : 'bg-transparent'
+    }`}>
+      <div className="container mx-auto px-4">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo */}
+          <div className={`text-2xl font-bold font-merriweather transition-colors duration-300 ${
+            isScrolled ? 'text-jblue-dark' : 'text-white'
+          }`}>
+            JAKALA
           </div>
-          
+
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
-            <button
-              onClick={() => scrollToSection('booth')}
-              className="nav-link font-raleway font-medium"
-            >
-              Find Us
-            </button>
-            <button
-              onClick={() => scrollToSection('session')}
-              className="nav-link font-raleway font-medium"
-            >
-              Session
-            </button>
-            <button
-              onClick={() => scrollToSection('event')}
-              className="nav-link font-raleway font-medium"
-            >
-              Event
-            </button>
+            {[
+              { label: 'Event Info', id: 'booth-section' },
+              { label: 'Session', id: 'session-section' },
+              { label: 'Evening Event', id: 'event-section' },
+            ].map((item) => (
+              <button
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
+                className={`font-medium transition-colors duration-300 hover:text-jred-primary ${
+                  isScrolled ? 'text-jblue-dark' : 'text-white'
+                }`}
+              >
+                {item.label}
+              </button>
+            ))}
           </nav>
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden text-white p-2"
+            className={`md:hidden p-2 transition-colors duration-300 ${
+              isScrolled ? 'text-jblue-dark' : 'text-white'
+            }`}
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -58,32 +67,27 @@ const Header: React.FC<HeaderProps> = ({ isMenuOpen, setIsMenuOpen }) => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <nav className="md:hidden pb-4 border-t border-jakala-blue-lighter mt-4 pt-4">
-            <div className="flex flex-col space-y-4">
-              <button
-                onClick={() => scrollToSection('booth')}
-                className="nav-link font-raleway font-medium text-left"
-              >
-                Find Us
-              </button>
-              <button
-                onClick={() => scrollToSection('session')}
-                className="nav-link font-raleway font-medium text-left"
-              >
-                Session
-              </button>
-              <button
-                onClick={() => scrollToSection('event')}
-                className="nav-link font-raleway font-medium text-left"
-              >
-                Event
-              </button>
-            </div>
-          </nav>
+          <div className="md:hidden bg-white border-t border-jgrey-light">
+            <nav className="py-4 space-y-2">
+              {[
+                { label: 'Event Info', id: 'booth-section' },
+                { label: 'Session', id: 'session-section' },
+                { label: 'Evening Event', id: 'event-section' },
+              ].map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  className="block w-full text-left px-4 py-2 text-jblue-dark hover:text-jred-primary transition-colors duration-300"
+                >
+                  {item.label}
+                </button>
+              ))}
+            </nav>
+          </div>
         )}
       </div>
     </header>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

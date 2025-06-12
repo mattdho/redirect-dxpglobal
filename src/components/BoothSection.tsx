@@ -3,44 +3,36 @@ import { MapPin, Clock } from 'lucide-react'
 
 const BoothSection: React.FC = () => {
   return (
-    <section id="booth" className="py-20 bg-jakala-grey-2">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-merriweather font-bold text-jakala-blue mb-6">
-            Visit Us at Booth 24
+    <section id="booth-section" className="section-padding bg-jgrey-light">
+      <div className="container mx-auto px-4">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-4xl font-bold mb-12 text-jblue-dark animate-fade-in-up">
+            Where to Find Us
           </h2>
-          <p className="text-xl font-raleway text-jakala-blue-light max-w-3xl mx-auto leading-relaxed">
-            Meet the Jakala team and explore how we're transforming digital experiences in Higher Education.
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          <div className="bg-white rounded-lg p-8 shadow-lg">
-            <div className="flex items-center mb-4">
-              <MapPin className="text-jakala-red mr-3" size={24} />
-              <h3 className="text-xl font-merriweather font-bold text-jakala-blue">
-                Location
-              </h3>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="event-card animate-fade-in-up">
+              <div className="flex items-center gap-6">
+                <div className="icon-booth">
+                  <MapPin size={24} />
+                </div>
+                <div className="text-left">
+                  <h3 className="text-2xl font-semibold text-jblue-dark mb-2">Visit us at</h3>
+                  <p className="text-xl text-jblue-primary font-medium">Booth 24</p>
+                </div>
+              </div>
             </div>
-            <p className="text-lg font-raleway text-jakala-blue-light">
-              Booth 24<br />
-              EduWeb 2025 Exhibition Hall<br />
-              Portland, Maine
-            </p>
-          </div>
-
-          <div className="bg-white rounded-lg p-8 shadow-lg">
-            <div className="flex items-center mb-4">
-              <Clock className="text-jakala-red mr-3" size={24} />
-              <h3 className="text-xl font-merriweather font-bold text-jakala-blue">
-                Hours
-              </h3>
+            
+            <div className="event-card animate-fade-in-up">
+              <div className="flex items-center gap-6">
+                <div className="icon-booth">
+                  <Clock size={24} />
+                </div>
+                <div className="text-left">
+                  <h3 className="text-2xl font-semibold text-jblue-dark mb-2">Conference Dates</h3>
+                  <p className="text-xl text-jblue-primary font-medium">July 15-17, 2025</p>
+                </div>
+              </div>
             </div>
-            <p className="text-lg font-raleway text-jakala-blue-light">
-              July 15-17, 2025<br />
-              9:00 AM - 5:00 PM<br />
-              Stop by anytime!
-            </p>
           </div>
         </div>
       </div>

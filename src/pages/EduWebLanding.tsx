@@ -8,26 +8,36 @@ import Footer from '../components/Footer'
 import RSVPModal from '../components/RSVPModal'
 
 const EduWebLanding: React.FC = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isRSVPOpen, setIsRSVPOpen] = useState(false)
+  const [isRSVPModalOpen, setIsRSVPModalOpen] = useState(false)
 
-  const handleRSVPClick = () => {
-    setIsRSVPOpen(true)
+  const openRSVPModal = () => {
+    setIsRSVPModalOpen(true)
+    
+    // Track RSVP modal open
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'rsvp_modal_open', {
+        event_category: 'EduWeb 2025',
+        event_label: 'RSVP Modal Opened'
+      })
+    }
   }
 
-  const handleRSVPClose = () => {
-    setIsRSVPOpen(false)
+  const closeRSVPModal = () => {
+    setIsRSVPModalOpen(false)
   }
 
   return (
-    <div className="min-h-screen">
-      <Header isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
-      <Hero onRSVPClick={handleRSVPClick} />
+    <div className="min-h-screen bg-white">
+      <Header />
+      <Hero onRSVPClick={openRSVPModal} />
       <BoothSection />
       <SessionSection />
-      <OffSiteEvent onRSVPClick={handleRSVPClick} />
+      <OffSiteEvent onRSVPClick={openRSVPModal} />
       <Footer />
-      <RSVPModal isOpen={isRSVPOpen} onClose={handleRSVPClose} />
+      
+      {isRSVPModalOpen && (
+        <RSVPModal onClose={closeRSVPModal} />
+      )}
     </div>
   )
 }
