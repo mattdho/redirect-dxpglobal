@@ -692,9 +692,9 @@
 
     <!-- Scripts -->
     <script>
-        // Initialize Supabase
-        const SUPABASE_URL = import.meta.env?.VITE_SUPABASE_URL || '';
-        const SUPABASE_ANON_KEY = import.meta.env?.VITE_SUPABASE_ANON_KEY || '';
+        // Initialize Supabase with fallback values
+        const SUPABASE_URL = window.VITE_SUPABASE_URL || '';
+        const SUPABASE_ANON_KEY = window.VITE_SUPABASE_ANON_KEY || '';
         
         let supabase = null;
         if (SUPABASE_URL && SUPABASE_ANON_KEY) {
