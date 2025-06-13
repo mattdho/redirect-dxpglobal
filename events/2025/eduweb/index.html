@@ -362,6 +362,23 @@
     </noscript>
     <!-- End Google Tag Manager (noscript) -->
 
+    <!-- Hidden forms for Netlify detection (required for JS-rendered forms) -->
+    <div style="display: none;">
+        <!-- Hidden RSVP form for Netlify detection -->
+        <form name="rsvp" data-netlify="true">
+            <input type="text" name="name" />
+            <input type="email" name="email" />
+            <input type="text" name="organization" />
+            <input type="text" name="role" />
+        </form>
+        
+        <!-- Hidden download form for Netlify detection -->
+        <form name="download" data-netlify="true">
+            <input type="email" name="email" />
+            <input type="text" name="organization" />
+        </form>
+    </div>
+
     <!-- Progress Bar -->
     <div class="progress-bar"></div>
 
@@ -599,7 +616,7 @@
                                         </div>
                                         <div>
                                             <div class="font-semibold text-jblue-dark">Mandee Englert</div>
-                                            <div class="text-sm text-jblue-primary">Jakala</div>
+                                            <div class="text-sm text-jblue-primary">Jakala - Industry Expert</div>
                                         </div>
                                     </div>
                                 </div>
@@ -623,7 +640,7 @@
                                         </div>
                                         <div>
                                             <div class="font-semibold text-jblue-dark">Chaney Moore</div>
-                                            <div class="text-sm text-jblue-primary">Industry Expert</div>
+                                            <div class="text-sm text-jblue-primary">Jakala - Solutions Expert</div>
                                         </div>
                                     </div>
                                 </div>
@@ -939,25 +956,27 @@
                 <p class="text-jblue-primary mb-6">Join us for an exclusive evening of wine, cuisine, and strategic discussions about the future of higher education digital transformation.</p>
             </div>
             
-            <form class="space-y-4">
+            <form name="rsvp" method="POST" data-netlify="true" class="space-y-4">
+                <input type="hidden" name="form-name" value="rsvp" />
+                
                 <div>
                     <label class="block text-sm font-semibold text-jblue-dark mb-2">Full Name *</label>
-                    <input type="text" required class="w-full px-4 py-3 border border-jgrey-light rounded-xl focus:ring-2 focus:ring-jblue-light focus:border-transparent">
+                    <input type="text" name="name" required class="w-full px-4 py-3 border border-jgrey-light rounded-xl focus:ring-2 focus:ring-jblue-light focus:border-transparent">
                 </div>
                 
                 <div>
                     <label class="block text-sm font-semibold text-jblue-dark mb-2">Email Address *</label>
-                    <input type="email" required class="w-full px-4 py-3 border border-jgrey-light rounded-xl focus:ring-2 focus:ring-jblue-light focus:border-transparent">
+                    <input type="email" name="email" required class="w-full px-4 py-3 border border-jgrey-light rounded-xl focus:ring-2 focus:ring-jblue-light focus:border-transparent">
                 </div>
                 
                 <div>
                     <label class="block text-sm font-semibold text-jblue-dark mb-2">University/Organization</label>
-                    <input type="text" class="w-full px-4 py-3 border border-jgrey-light rounded-xl focus:ring-2 focus:ring-jblue-light focus:border-transparent">
+                    <input type="text" name="organization" class="w-full px-4 py-3 border border-jgrey-light rounded-xl focus:ring-2 focus:ring-jblue-light focus:border-transparent">
                 </div>
                 
                 <div>
                     <label class="block text-sm font-semibold text-jblue-dark mb-2">Role/Title</label>
-                    <input type="text" class="w-full px-4 py-3 border border-jgrey-light rounded-xl focus:ring-2 focus:ring-jblue-light focus:border-transparent">
+                    <input type="text" name="role" class="w-full px-4 py-3 border border-jgrey-light rounded-xl focus:ring-2 focus:ring-jblue-light focus:border-transparent">
                 </div>
                 
                 <div class="pt-4">
@@ -990,15 +1009,17 @@
                 <p class="text-jblue-primary">Get exclusive access to our presentation materials and case study data.</p>
             </div>
             
-            <form class="space-y-4">
+            <form name="download" method="POST" data-netlify="true" class="space-y-4">
+                <input type="hidden" name="form-name" value="download" />
+                
                 <div>
                     <label class="block text-sm font-semibold text-jblue-dark mb-2">Email Address *</label>
-                    <input type="email" required placeholder="your.email@university.edu" class="w-full px-4 py-3 border border-jgrey-light rounded-xl focus:ring-2 focus:ring-jblue-light focus:border-transparent">
+                    <input type="email" name="email" required placeholder="your.email@university.edu" class="w-full px-4 py-3 border border-jgrey-light rounded-xl focus:ring-2 focus:ring-jblue-light focus:border-transparent">
                 </div>
                 
                 <div>
                     <label class="block text-sm font-semibold text-jblue-dark mb-2">Organization</label>
-                    <input type="text" placeholder="Your University/Organization" class="w-full px-4 py-3 border border-jgrey-light rounded-xl focus:ring-2 focus:ring-jblue-light focus:border-transparent">
+                    <input type="text" name="organization" placeholder="Your University/Organization" class="w-full px-4 py-3 border border-jgrey-light rounded-xl focus:ring-2 focus:ring-jblue-light focus:border-transparent">
                 </div>
                 
                 <div class="pt-4">
@@ -1154,16 +1175,49 @@
             }
         }
 
-        // Form submissions
+        // Form submissions for Netlify
         document.querySelectorAll('form').forEach(form => {
             form.addEventListener('submit', function(e) {
                 e.preventDefault();
-                const formType = this.closest('.modal').id;
-                trackEvent('form_submit', 'Form', formType);
+                const formData = new FormData(this);
+                const formType = this.getAttribute('name');
                 
-                // Show success message (simplified)
-                alert('Thank you! We\'ll be in touch soon.');
-                closeModal(formType);
+                // Show loading state
+                const submitBtn = this.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+                submitBtn.innerHTML = '<span>Submitting...</span>';
+                submitBtn.disabled = true;
+                
+                // Submit to Netlify using their required format
+                fetch("/", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                    body: new URLSearchParams(formData).toString()
+                })
+                .then(() => {
+                    // Success handling
+                    trackEvent('form_submit', 'Form', formType);
+                    
+                    // Show success message
+                    if (formType === 'rsvp') {
+                        alert('🎉 Thank you! Your spot has been reserved. We\'ll send you a confirmation email with event details.');
+                    } else if (formType === 'download') {
+                        alert('📄 Thank you! We\'ll email you the session materials shortly.');
+                    }
+                    
+                    // Close modal and reset form
+                    closeModal(this.closest('.modal').id);
+                    this.reset();
+                })
+                .catch(error => {
+                    console.error('Form submission error:', error);
+                    alert('Sorry, there was an error submitting your form. Please try again or contact us directly.');
+                })
+                .finally(() => {
+                    // Reset button state
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                });
             });
         });
 
