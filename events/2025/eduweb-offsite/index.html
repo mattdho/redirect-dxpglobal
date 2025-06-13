@@ -364,7 +364,7 @@
 
     <!-- Hidden forms for Netlify detection (required for JS-rendered forms) -->
     <div style="display: none;">
-        <!-- Hidden RSVP form for Netlify detection -->
+                <!-- Hidden RSVP form for Netlify detection -->
         <form name="rsvp" data-netlify="true">
             <input type="text" name="name" />
             <input type="email" name="email" />
@@ -372,7 +372,12 @@
             <input type="text" name="role" />
         </form>
         
-
+        <!-- Hidden download form for Netlify detection -->
+        <form name="download" data-netlify="true">
+            <input type="email" name="email" />
+            <input type="text" name="organization" />
+        </form>
+    
     </div>
 
     <!-- Progress Bar -->
@@ -665,10 +670,10 @@
                         </div>
                         <h4 class="text-lg font-semibold text-jblue-dark mb-3">Boosting Applications with a Modern Digital Experience</h4>
                         <p class="text-jblue-primary mb-4">Learn how we transformed Penn State's enrollment experience through strategic design and personalized content journeys.</p>
-                        <a href="https://www.jakala.com/higher-education" target="_blank" class="btn-secondary">
-                            <span>Learn More</span>
+                        <a href="#download-modal" class="btn-secondary" onclick="openModal('download-modal')">
+                            <span>Download Presentation</span>
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-4-4m4 4l4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                             </svg>
                         </a>
                     </div>
@@ -830,10 +835,51 @@
                     </button>
                 </div>
             </form>
-        </div>
+                </div>
     </div>
 
-
+    <!-- Download Modal -->
+    <div id="download-modal" class="modal">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-jblue-dark">Download Presentation Materials</h3>
+                <button onclick="closeModal('download-modal')" class="text-jgrey-dark hover:text-jblue-dark text-2xl">&times;</button>
+            </div>
+            
+            <div class="text-center mb-6">
+                <div class="w-24 h-24 bg-gradient-to-br from-jblue-medium to-jblue-light rounded-2xl mx-auto mb-4 flex items-center justify-center">
+                    <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-4-4m4 4l4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                <h4 class="text-xl font-semibold text-jblue-dark mb-2">EduWeb Session Materials</h4>
+                <p class="text-jblue-primary">Get exclusive access to our presentation on boosting applications with modern digital experiences.</p>
+            </div>
+            
+            <form name="download" method="POST" data-netlify="true" class="space-y-4">
+                <input type="hidden" name="form-name" value="download" />
+                
+                <div>
+                    <label class="block text-sm font-semibold text-jblue-dark mb-2">Email Address *</label>
+                    <input type="email" name="email" required placeholder="your.email@university.edu" class="w-full px-4 py-3 border border-jgrey-light rounded-xl focus:ring-2 focus:ring-jblue-light focus:border-transparent">
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-semibold text-jblue-dark mb-2">University/Organization</label>
+                    <input type="text" name="organization" placeholder="Your University/Organization" class="w-full px-4 py-3 border border-jgrey-light rounded-xl focus:ring-2 focus:ring-jblue-light focus:border-transparent">
+                </div>
+                
+                <div class="pt-4">
+                    <button type="submit" class="btn-primary w-full">
+                        <span>Download Materials</span>
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-4-4m4 4l4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <!-- Enhanced JavaScript -->
     <script>
@@ -1002,6 +1048,8 @@
                     // Show success message
                     if (formType === 'rsvp') {
                         alert('🎉 Thank you! Your spot has been reserved. We\'ll send you a confirmation email with event details.');
+                    } else if (formType === 'download') {
+                        alert('📄 Thank you! We\'ll email you the presentation materials shortly.');
                     }
                     
                     // Close modal and reset form
