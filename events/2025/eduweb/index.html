@@ -650,11 +650,8 @@
                         <!-- QR Code -->
                         <div class="glass-card p-6 text-center scroll-reveal">
                             <h5 class="text-lg font-semibold mb-4 text-jblue-dark">Explore Our Solutions</h5>
-                            <div class="w-32 h-32 mx-auto mb-4 bg-white border-2 border-jgrey-light rounded-2xl flex items-center justify-center shadow-inner">
-                                <div class="text-center">
-                                    <div class="text-xs mb-2 text-jblue-primary">QR Code</div>
-                                    <div class="text-xs text-jblue-dark font-semibold">jakala.com/higher-ed</div>
-                                </div>
+                            <div class="w-32 h-32 mx-auto mb-4 bg-white border-2 border-jgrey-light rounded-2xl p-2 shadow-inner">
+                                <img src="../../Assets/QR Code.png" alt="Jakala Higher Ed Solutions QR Code" class="w-full h-full object-contain rounded-xl">
                             </div>
                             <p class="text-sm text-jblue-primary">Scan for Higher Ed Solutions</p>
                         </div>
@@ -1115,7 +1112,7 @@
         // Spots remaining animation
         function animateSpots() {
             const spotsElements = document.querySelectorAll('#spots-remaining, #modal-spots');
-            let currentSpots = 12;
+            let currentSpots = 25;
             
             setInterval(() => {
                 if (Math.random() < 0.1 && currentSpots > 5) { // 10% chance every interval
