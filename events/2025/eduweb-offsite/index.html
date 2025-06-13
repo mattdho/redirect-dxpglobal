@@ -372,11 +372,7 @@
             <input type="text" name="role" />
         </form>
         
-        <!-- Hidden download form for Netlify detection -->
-        <form name="download" data-netlify="true">
-            <input type="email" name="email" />
-            <input type="text" name="organization" />
-        </form>
+
     </div>
 
     <!-- Progress Bar -->
@@ -388,38 +384,39 @@
             <div class="max-w-5xl mx-auto text-center">
                 <div class="animate-bounce-in">
                     <h1 class="text-6xl md:text-8xl font-bold mb-8 leading-tight bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">
-                        Join Jakala at<br>
-                        <span class="text-jteal animate-pulse-slow">EduWeb 2025</span>
+                        Exclusive Wine &<br>
+                        <span class="text-jteal animate-pulse-slow">Strategy Event</span>
                     </h1>
                 </div>
                 
                 <div class="animate-slide-up" style="animation-delay: 0.3s; animation-fill-mode: both;">
                     <h2 class="text-3xl md:text-4xl mb-12 opacity-90 font-light">
-                        Reimagining Digital Experience in Higher Education
+                        An Evening Discussing Digital Impact in Higher Education
                     </h2>
                 </div>
                 
                 <div class="animate-slide-up flex flex-col sm:flex-row gap-6 justify-center items-center" style="animation-delay: 0.6s; animation-fill-mode: both;">
-                    <a href="#event" class="btn-primary text-xl group">
-                        <span>Reserve Your Spot</span>
+                    <a href="#rsvp-modal" class="btn-primary text-xl group" onclick="openModal('rsvp-modal')">
+                        <span>Reserve Your Exclusive Spot</span>
                         <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                         </svg>
                     </a>
                     
-                    <a href="#session" class="btn-secondary text-lg group">
-                        <span>View Session</span>
+                    <a href="#eduweb-info" class="btn-secondary text-lg group">
+                        <span>About EduWeb</span>
                         <svg class="w-4 h-4 group-hover:translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
                         </svg>
                     </a>
                 </div>
                 
-                <!-- Floating countdown timer -->
+                <!-- Event Details Preview -->
                 <div class="mt-16 animate-fade-in" style="animation-delay: 1s; animation-fill-mode: both;">
                     <div class="glass-card inline-block px-8 py-4">
-                        <div class="text-sm text-jred-medium mb-1">Event starts in</div>
-                        <div id="countdown" class="text-2xl font-bold text-jred-medium"></div>
+                        <div class="text-sm text-jred-medium mb-1">July 17, 2025 • 5:30-7:30 PM</div>
+                        <div class="text-2xl font-bold text-jred-medium">Grippy Tannin's • Portland, ME</div>
+                        <div class="text-sm text-jteal mt-2">Limited to 25 Exclusive Guests</div>
                     </div>
                 </div>
             </div>
@@ -429,240 +426,6 @@
         <div class="absolute top-1/4 left-1/4 w-32 h-32 bg-jpurple rounded-full opacity-20 animate-float"></div>
         <div class="absolute bottom-1/3 right-1/4 w-24 h-24 bg-jteal rounded-full opacity-30 animate-float" style="animation-delay: 2s;"></div>
         <div class="absolute top-2/3 left-1/6 w-20 h-20 bg-jred-light rounded-full opacity-25 animate-float" style="animation-delay: 4s;"></div>
-    </section>
-
-    <!-- Where to Find Us Section -->
-    <section class="py-20 bg-gradient-to-br from-jgrey-lightest to-white relative">
-        <div class="container mx-auto px-4">
-            <div class="max-w-6xl mx-auto">
-                <div class="text-center mb-16 scroll-reveal">
-                    <h2 class="text-5xl font-bold mb-6 text-jblue-dark">Where to Find Us</h2>
-                    <p class="text-xl text-jblue-primary max-w-2xl mx-auto">Join us at EduWeb 2025 in Portland, Maine for exclusive sessions and networking opportunities.</p>
-                </div>
-                
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Conference Location -->
-                    <div class="glass-card p-8 text-center group scroll-reveal">
-                        <div class="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-jblue-medium to-jblue-light rounded-2xl flex items-center justify-center icon-interactive">
-                            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                            </svg>
-                        </div>
-                        <h3 class="text-2xl font-semibold text-jblue-dark mb-3">Visit Us at</h3>
-                        <p class="text-3xl font-bold text-jred-medium mb-2">Booth 24</p>
-                        <p class="text-jblue-primary">Come see our latest solutions</p>
-                    </div>
-                    
-                    <!-- Conference Dates -->
-                    <div class="glass-card p-8 text-center group scroll-reveal">
-                        <div class="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-jred-medium to-jred-light rounded-2xl flex items-center justify-center icon-interactive">
-                            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                            </svg>
-                        </div>
-                        <h3 class="text-2xl font-semibold text-jblue-dark mb-3">Conference Dates</h3>
-                        <p class="text-2xl font-bold text-jblue-medium mb-2">July 15-17, 2025</p>
-                        <p class="text-jblue-primary">Three days of innovation</p>
-                    </div>
-                    
-                    <!-- Location -->
-                    <div class="glass-card p-8 text-center group scroll-reveal md:col-span-2 lg:col-span-1">
-                        <div class="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-jteal to-jpurple rounded-2xl flex items-center justify-center icon-interactive">
-                            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
-                            </svg>
-                        </div>
-                        <h3 class="text-2xl font-semibold text-jblue-dark mb-3">Portland, Maine</h3>
-                        <p class="text-xl font-bold text-jpurple mb-2">Eastland Park Hotel</p>
-                        <p class="text-jblue-primary">Beautiful historic venue</p>
-                    </div>
-                </div>
-                
-                <!-- Quick Actions -->
-                <div class="text-center mt-12 scroll-reveal">
-                    <div class="inline-flex gap-4">
-                        <a href="#session" class="btn-secondary">
-                            View Our Session
-                        </a>
-                        <a href="#event" class="btn-primary">
-                            Book Wine Event
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Background decoration -->
-        <div class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-jpurple to-transparent opacity-10 rounded-full"></div>
-        <div class="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-jteal to-transparent opacity-10 rounded-full"></div>
-    </section>
-
-    <!-- Session Section -->
-    <section id="session" class="py-24 bg-white relative">
-        <div class="container mx-auto px-4">
-            <div class="max-w-7xl mx-auto">
-                <div class="text-center mb-20 scroll-reveal">
-                    <h2 class="text-6xl font-bold mb-6 text-jblue-dark">Featured Session</h2>
-                    <h3 class="text-3xl text-jblue-primary mb-8 max-w-4xl mx-auto leading-tight">
-                        Boosting Applications with a Modern Digital Experience
-                    </h3>
-                    <div class="w-24 h-1 bg-gradient-to-r from-jred-medium to-jblue-light mx-auto"></div>
-                </div>
-                
-                <div class="grid lg:grid-cols-3 gap-12 mb-16">
-                    <!-- Session Details Card -->
-                    <div class="lg:col-span-2">
-                        <div class="glass-card p-8 mb-8 scroll-reveal">
-                            <div class="flex items-center mb-6">
-                                <div class="w-16 h-16 bg-gradient-to-br from-jblue-medium to-jblue-light rounded-2xl flex items-center justify-center mr-4">
-                                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                    </svg>
-                                </div>
-                                <h4 class="text-3xl font-semibold text-jblue-dark">Session Details</h4>
-                            </div>
-                            
-                            <div class="grid md:grid-cols-3 gap-6">
-                                <div class="text-center p-4 bg-gradient-to-br from-jgrey-lightest to-white rounded-xl">
-                                    <div class="text-sm text-jblue-primary mb-1">Date</div>
-                                    <div class="text-xl font-bold text-jblue-dark">July 15, 2025</div>
-                                </div>
-                                <div class="text-center p-4 bg-gradient-to-br from-jgrey-lightest to-white rounded-xl">
-                                    <div class="text-sm text-jblue-primary mb-1">Time</div>
-                                    <div class="text-xl font-bold text-jblue-dark">2:45–3:45 PM</div>
-                                </div>
-                                <div class="text-center p-4 bg-gradient-to-br from-jgrey-lightest to-white rounded-xl">
-                                    <div class="text-sm text-jblue-primary mb-1">Location</div>
-                                    <div class="text-xl font-bold text-jblue-dark">Rhode Island Room</div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Session Summary -->
-                        <div class="glass-card p-8 scroll-reveal">
-                            <h4 class="text-2xl font-semibold mb-6 text-jblue-dark flex items-center">
-                                <svg class="w-6 h-6 mr-3 text-jred-medium" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
-                                </svg>
-                                What You'll Learn
-                            </h4>
-                            <p class="text-lg text-jblue-primary leading-relaxed mb-6">
-                                Discover how Jakala transformed Penn State's undergraduate enrollment experience through strategic information architecture, 
-                                personalized content journeys, and modern digital experience design.
-                            </p>
-                            
-                            <!-- Key Takeaways -->
-                            <div class="grid md:grid-cols-2 gap-4 mb-8">
-                                <div class="flex items-start">
-                                    <div class="w-8 h-8 bg-jred-light rounded-full flex items-center justify-center mr-3 mt-1">
-                                        <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                        </svg>
-                                    </div>
-                                    <span class="text-jblue-primary">Strategic information architecture</span>
-                                </div>
-                                <div class="flex items-start">
-                                    <div class="w-8 h-8 bg-jred-light rounded-full flex items-center justify-center mr-3 mt-1">
-                                        <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                        </svg>
-                                    </div>
-                                    <span class="text-jblue-primary">Personalized content journeys</span>
-                                </div>
-                                <div class="flex items-start">
-                                    <div class="w-8 h-8 bg-jred-light rounded-full flex items-center justify-center mr-3 mt-1">
-                                        <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                        </svg>
-                                    </div>
-                                    <span class="text-jblue-primary">Data-driven digital transformation</span>
-                                </div>
-                                <div class="flex items-start">
-                                    <div class="w-8 h-8 bg-jred-light rounded-full flex items-center justify-center mr-3 mt-1">
-                                        <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                        </svg>
-                                    </div>
-                                    <span class="text-jblue-primary">Boosting application rates</span>
-                                </div>
-                            </div>
-                            
-                            <a href="#download-modal" class="btn-primary group" onclick="openModal('download-modal')">
-                                <span>Download Slides</span>
-                                <svg class="w-5 h-5 group-hover:translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-4-4m4 4l4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <!-- Speakers & QR Code -->
-                    <div class="space-y-8">
-                        <!-- Speakers -->
-                        <div class="glass-card p-6 scroll-reveal">
-                            <h4 class="text-2xl font-semibold mb-6 text-jblue-dark flex items-center">
-                                <svg class="w-6 h-6 mr-3 text-jpurple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
-                                </svg>
-                                Featured Speakers
-                            </h4>
-                            
-                            <div class="space-y-4">
-                                <div class="speaker-card p-4 rounded-xl bg-gradient-to-r from-jgrey-lightest to-white hover:shadow-lg transition-all cursor-pointer" data-speaker="mandee">
-                                    <div class="flex items-center">
-                                        <div class="w-12 h-12 bg-gradient-to-br from-jred-medium to-jred-light rounded-full flex items-center justify-center mr-4">
-                                            <span class="text-white font-bold">ME</span>
-                                        </div>
-                                        <div>
-                                            <div class="font-semibold text-jblue-dark">Mandee Englert</div>
-                                            <div class="text-sm text-jblue-primary">Jakala - Industry Expert</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="speaker-card p-4 rounded-xl bg-gradient-to-r from-jgrey-lightest to-white hover:shadow-lg transition-all cursor-pointer" data-speaker="jim">
-                                    <div class="flex items-center">
-                                        <div class="w-12 h-12 bg-gradient-to-br from-jblue-medium to-jblue-light rounded-full flex items-center justify-center mr-4">
-                                            <span class="text-white font-bold">JN</span>
-                                        </div>
-                                        <div>
-                                            <div class="font-semibold text-jblue-dark">Jim Nourse</div>
-                                            <div class="text-sm text-jblue-primary">Penn State</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="speaker-card p-4 rounded-xl bg-gradient-to-r from-jgrey-lightest to-white hover:shadow-lg transition-all cursor-pointer" data-speaker="chaney">
-                                    <div class="flex items-center">
-                                        <div class="w-12 h-12 bg-gradient-to-br from-jteal to-jpurple rounded-full flex items-center justify-center mr-4">
-                                            <span class="text-white font-bold">CM</span>
-                                        </div>
-                                        <div>
-                                            <div class="font-semibold text-jblue-dark">Chaney Moore</div>
-                                            <div class="text-sm text-jblue-primary">Jakala - Solutions Expert</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- QR Code -->
-                        <div class="glass-card p-6 text-center scroll-reveal">
-                            <h5 class="text-lg font-semibold mb-4 text-jblue-dark">Explore Our Solutions</h5>
-                            <div class="w-32 h-32 mx-auto mb-4 bg-white border-2 border-jgrey-light rounded-2xl p-2 shadow-inner">
-                                <img src="../../../Assets/QR Code.png" alt="Jakala Higher Ed Solutions QR Code" class="w-full h-full object-contain rounded-xl">
-                            </div>
-                            <p class="text-sm text-jblue-primary">Scan for Higher Ed Solutions</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Background decoration -->
-        <div class="absolute top-1/4 left-0 w-32 h-32 bg-gradient-to-r from-jpurple to-transparent opacity-5 rounded-full"></div>
-        <div class="absolute bottom-1/4 right-0 w-40 h-40 bg-gradient-to-l from-jteal to-transparent opacity-5 rounded-full"></div>
     </section>
 
     <!-- Off-Site Event Section -->
@@ -847,6 +610,88 @@
         <div class="absolute bottom-20 left-10 w-16 h-16 bg-gradient-to-br from-jteal to-transparent opacity-20 rounded-full animate-float" style="animation-delay: 3s;"></div>
     </section>
 
+    <!-- EduWeb Context Section -->
+    <section id="eduweb-info" class="py-20 bg-gradient-to-br from-jgrey-lightest to-white relative">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16 scroll-reveal">
+                    <h2 class="text-4xl font-bold mb-6 text-jblue-dark">Why We're at EduWeb 2025</h2>
+                    <p class="text-lg text-jblue-primary max-w-3xl mx-auto">This exclusive event coincides with our presence at EduWeb 2025, where we're sharing our latest insights on digital transformation in higher education.</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-12 mb-16">
+                    <!-- Conference Presence -->
+                    <div class="glass-card p-8 scroll-reveal">
+                        <div class="w-16 h-16 bg-gradient-to-br from-jblue-medium to-jblue-light rounded-2xl flex items-center justify-center mb-6">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-jblue-dark mb-4">Visit Our Booth</h3>
+                        <div class="space-y-3 mb-6">
+                            <div class="flex items-center gap-3">
+                                <div class="w-2 h-2 bg-jred-medium rounded-full"></div>
+                                <span class="text-jblue-primary"><strong>Booth 24</strong> at Eastland Park Hotel</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-2 h-2 bg-jblue-light rounded-full"></div>
+                                <span class="text-jblue-primary">July 15-17, 2025</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-2 h-2 bg-jteal rounded-full"></div>
+                                <span class="text-jblue-primary">Portland, Maine</span>
+                            </div>
+                        </div>
+                        <p class="text-jblue-primary">Discover our latest solutions for higher education digital transformation and see live demos of our work.</p>
+                    </div>
+                    
+                    <!-- Featured Session -->
+                    <div class="glass-card p-8 scroll-reveal">
+                        <div class="w-16 h-16 bg-gradient-to-br from-jred-medium to-jred-light rounded-2xl flex items-center justify-center mb-6">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-jblue-dark mb-4">Our Featured Session</h3>
+                        <div class="space-y-3 mb-6">
+                            <div class="flex items-center gap-3">
+                                <div class="w-2 h-2 bg-jred-medium rounded-full"></div>
+                                <span class="text-jblue-primary">July 15, 2025 • 2:45–3:45 PM</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-2 h-2 bg-jblue-light rounded-full"></div>
+                                <span class="text-jblue-primary">Rhode Island Room</span>
+                            </div>
+                        </div>
+                        <h4 class="text-lg font-semibold text-jblue-dark mb-3">Boosting Applications with a Modern Digital Experience</h4>
+                        <p class="text-jblue-primary mb-4">Learn how we transformed Penn State's enrollment experience through strategic design and personalized content journeys.</p>
+                        <a href="https://www.jakala.com/higher-education" target="_blank" class="btn-secondary">
+                            <span>Learn More</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- QR Code Section -->
+                <div class="text-center scroll-reveal">
+                    <div class="glass-card inline-block p-8">
+                        <h4 class="text-xl font-semibold mb-4 text-jblue-dark">Explore Our Higher Ed Solutions</h4>
+                        <div class="w-32 h-32 mx-auto mb-4 bg-white border-2 border-jgrey-light rounded-2xl p-2 shadow-inner">
+                            <img src="../../../Assets/QR Code.png" alt="Jakala Higher Ed Solutions QR Code" class="w-full h-full object-contain rounded-xl">
+                        </div>
+                        <p class="text-sm text-jblue-primary">Scan to discover how we're transforming higher education</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Background decoration -->
+        <div class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-jpurple to-transparent opacity-10 rounded-full"></div>
+        <div class="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-jteal to-transparent opacity-10 rounded-full"></div>
+    </section>
+
     <!-- Footer Section -->
     <footer class="py-20 text-white relative overflow-hidden" style="background: linear-gradient(135deg, #040066 0%, #1941FA 100%);">
         <div class="absolute inset-0">
@@ -865,11 +710,11 @@
                             Transforming digital experiences in higher education through data-driven innovation and strategic design.
                         </p>
                         <div class="flex gap-4">
-                            <a href="https://www.jakala.com/higher-education" class="btn-primary">
-                                Our Solutions
+                            <a href="#rsvp-modal" class="btn-primary" onclick="openModal('rsvp-modal')">
+                                Reserve Your Spot
                             </a>
-                            <a href="#rsvp-modal" class="btn-secondary" onclick="openModal('rsvp-modal')">
-                                Join Event
+                            <a href="https://www.jakala.com/higher-education" class="btn-secondary" target="_blank">
+                                Our Solutions
                             </a>
                         </div>
                     </div>
@@ -878,10 +723,10 @@
                     <div>
                         <h5 class="text-xl font-semibold mb-6">Quick Links</h5>
                         <div class="space-y-3">
-                            <a href="#session" class="block hover:text-jteal transition-colors">Featured Session</a>
                             <a href="#event" class="block hover:text-jteal transition-colors">Wine & Strategy Event</a>
-                            <a href="#download-modal" class="block hover:text-jteal transition-colors" onclick="openModal('download-modal')">Download Slides</a>
-                            <a href="https://www.jakala.com" class="block hover:text-jteal transition-colors">About Jakala</a>
+                            <a href="#eduweb-info" class="block hover:text-jteal transition-colors">About EduWeb</a>
+                            <a href="https://www.jakala.com/higher-education" class="block hover:text-jteal transition-colors" target="_blank">Our Solutions</a>
+                            <a href="https://www.jakala.com" class="block hover:text-jteal transition-colors" target="_blank">About Jakala</a>
                         </div>
                     </div>
                     
@@ -988,48 +833,7 @@
         </div>
     </div>
 
-    <!-- Download Modal -->
-    <div id="download-modal" class="modal">
-        <div class="modal-content">
-            <div class="flex justify-between items-center mb-6">
-                <h3 class="text-2xl font-bold text-jblue-dark">Download Session Materials</h3>
-                <button onclick="closeModal('download-modal')" class="text-jgrey-dark hover:text-jblue-dark text-2xl">&times;</button>
-            </div>
-            
-            <div class="text-center mb-6">
-                <div class="w-24 h-24 bg-gradient-to-br from-jblue-medium to-jblue-light rounded-2xl mx-auto mb-4 flex items-center justify-center">
-                    <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-4-4m4 4l4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                    </svg>
-                </div>
-                <h4 class="text-xl font-semibold text-jblue-dark mb-2">Session Slides & Resources</h4>
-                <p class="text-jblue-primary">Get exclusive access to our presentation materials and case study data.</p>
-            </div>
-            
-            <form name="download" method="POST" data-netlify="true" class="space-y-4">
-                <input type="hidden" name="form-name" value="download" />
-                
-                <div>
-                    <label class="block text-sm font-semibold text-jblue-dark mb-2">Email Address *</label>
-                    <input type="email" name="email" required placeholder="your.email@university.edu" class="w-full px-4 py-3 border border-jgrey-light rounded-xl focus:ring-2 focus:ring-jblue-light focus:border-transparent">
-                </div>
-                
-                <div>
-                    <label class="block text-sm font-semibold text-jblue-dark mb-2">Organization</label>
-                    <input type="text" name="organization" placeholder="Your University/Organization" class="w-full px-4 py-3 border border-jgrey-light rounded-xl focus:ring-2 focus:ring-jblue-light focus:border-transparent">
-                </div>
-                
-                <div class="pt-4">
-                    <button type="submit" class="btn-primary w-full">
-                        <span>Download Materials</span>
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-4-4m4 4l4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
+
 
     <!-- Enhanced JavaScript -->
     <script>
@@ -1198,8 +1002,6 @@
                     // Show success message
                     if (formType === 'rsvp') {
                         alert('🎉 Thank you! Your spot has been reserved. We\'ll send you a confirmation email with event details.');
-                    } else if (formType === 'download') {
-                        alert('📄 Thank you! We\'ll email you the session materials shortly.');
                     }
                     
                     // Close modal and reset form
