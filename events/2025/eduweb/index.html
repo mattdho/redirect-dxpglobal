@@ -6,6 +6,10 @@
     <title>Join Jakala at EduWeb 2025 | Digital Experience in Higher Education</title>
     <meta name="description" content="Join Jakala at EduWeb 2025 for our wine & strategy event. Learn about boosting applications with modern digital experiences.">
     
+    <!-- Preload critical fonts for performance -->
+    <link rel="preload" href="../../Assets/Raleway/Raleway-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="../../Assets/Merriweather/Merriweather-VariableFont_opsz,wdth,wght.ttf" as="font" type="font/ttf" crossorigin>
+    
     <!-- Google Tag Manager -->
     <script>
     (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -32,9 +36,6 @@
       document.head.appendChild(s);
     })();
     </script>
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300..900&family=Merriweather:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -64,7 +65,24 @@
                 'light': '#E8E8E8',
                 'medium': '#CFCFCF',
                 'dark': '#B5B5B5'
-              }
+              },
+              'jteal': '#33CCCC',
+              'jpurple': '#9966FF'
+            },
+            animation: {
+              'float': 'float 6s ease-in-out infinite',
+              'pulse-slow': 'pulse 3s ease-in-out infinite',
+              'slide-up': 'slideUp 0.8s ease-out',
+              'fade-in': 'fadeIn 1s ease-out',
+              'glow': 'glow 2s ease-in-out infinite alternate',
+              'bounce-in': 'bounceIn 0.6s ease-out',
+            },
+            backgroundImage: {
+              'mesh-gradient': 'radial-gradient(circle at 25% 25%, #9966FF 0%, transparent 50%), radial-gradient(circle at 75% 75%, #33CCCC 0%, transparent 50%)',
+              'mesh-overlay': 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Cdefs%3E%3Cpattern id=\'grid\' width=\'8\' height=\'8\' patternUnits=\'userSpaceOnUse\'%3E%3Cpath d=\'M 8 0 L 0 0 0 8\' fill=\'none\' stroke=\'rgba(255,255,255,0.08)\' stroke-width=\'0.5\'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width=\'100\' height=\'100\' fill=\'url(%23grid)\'/%3E%3C/svg%3E")',
+            },
+            backdropBlur: {
+              xs: '2px',
             }
           }
         }
@@ -72,46 +90,108 @@
     </script>
     
     <style>
+      /* Local Font Loading */
+      @font-face {
+        font-family: 'Raleway';
+        src: url('../../Assets/Raleway/Raleway-VariableFont_wght.ttf') format('truetype-variations');
+        font-weight: 100 900;
+        font-display: swap;
+      }
+      
+      @font-face {
+        font-family: 'Merriweather';
+        src: url('../../Assets/Merriweather/Merriweather-VariableFont_opsz,wdth,wght.ttf') format('truetype-variations');
+        font-weight: 300 900;
+        font-display: swap;
+      }
+      
+      /* Base Typography */
       body {
         font-family: "Raleway", sans-serif;
         color: #040066;
-      }
-      h1, h2, h3, h4, h5, h6 {
-        font-family: "Merriweather", serif;
+        line-height: 1.6;
+        scroll-behavior: smooth;
       }
       
+      h1, h2, h3, h4, h5, h6 {
+        font-family: "Merriweather", serif;
+        line-height: 1.2;
+      }
+      
+      /* Enhanced Button Styles */
       .btn-primary {
-        background-color: #F00A0A;
+        background: linear-gradient(135deg, #F00A0A 0%, #FF3F3F 100%);
         color: #FFFFFF;
-        padding: 12px 24px;
-        border-radius: 6px;
+        padding: 16px 32px;
+        border-radius: 12px;
         font-weight: 600;
         text-decoration: none;
-        display: inline-block;
-        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 4px 20px rgba(240, 10, 10, 0.3);
+        position: relative;
+        overflow: hidden;
       }
+      
+      .btn-primary::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        transition: left 0.5s;
+      }
+      
+      .btn-primary:hover::before {
+        left: 100%;
+      }
+      
       .btn-primary:hover {
-        background-color: #FF3F3F;
-        transform: translateY(-1px);
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 8px 30px rgba(240, 10, 10, 0.4);
       }
       
       .btn-secondary {
-        background-color: #F16A6A;
+        background: linear-gradient(135deg, #F16A6A 0%, #FF8982 100%);
         color: #FFFFFF;
-        padding: 12px 24px;
-        border-radius: 6px;
+        padding: 14px 28px;
+        border-radius: 10px;
         font-weight: 600;
         text-decoration: none;
-        display: inline-block;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
         transition: all 0.3s ease;
-      }
-      .btn-secondary:hover {
-        background-color: #FF8982;
-        transform: translateY(-1px);
+        box-shadow: 0 3px 15px rgba(241, 106, 106, 0.3);
       }
       
+      .btn-secondary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 25px rgba(241, 106, 106, 0.4);
+      }
+      
+      /* Glass Card Effect */
+      .glass-card {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 20px;
+        box-shadow: 0 8px 32px rgba(4, 0, 102, 0.1);
+        transition: all 0.3s ease;
+      }
+      
+      .glass-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 16px 48px rgba(4, 0, 102, 0.15);
+      }
+      
+      /* Hero Background with Mesh */
       .hero-bg {
-        background: linear-gradient(135deg, #040066 0%, #1941FA 100%);
+        background: linear-gradient(135deg, #040066 0%, #1941FA 50%, #3C82FF 100%);
         position: relative;
         overflow: hidden;
       }
@@ -123,38 +203,154 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-        opacity: 0.3;
+        background-image: var(--tw-gradient-to, var(--tw-gradient-stops)), var(--tw-bg-mesh-overlay);
+        opacity: 0.4;
       }
       
-      .section-padding {
-        padding: 4rem 0;
-      }
-      
-      .qr-code {
-        width: 120px;
-        height: 120px;
-        background: #fff;
-        border: 2px solid #E8E8E8;
-        border-radius: 8px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 12px;
-        color: #666;
-        text-align: center;
-      }
-      
-      .icon-booth {
-        background: #F00A0A;
-        color: white;
-        width: 48px;
-        height: 48px;
+      .hero-bg::after {
+        content: '';
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        background: radial-gradient(circle, rgba(153, 102, 255, 0.3) 0%, transparent 70%);
         border-radius: 50%;
+        top: 20%;
+        right: 10%;
+        animation: float 8s ease-in-out infinite;
+      }
+      
+      /* Floating Animation */
+      @keyframes float {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        33% { transform: translateY(-20px) rotate(120deg); }
+        66% { transform: translateY(10px) rotate(240deg); }
+      }
+      
+      @keyframes slideUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      
+      @keyframes glow {
+        from { box-shadow: 0 0 20px rgba(60, 130, 255, 0.3); }
+        to { box-shadow: 0 0 30px rgba(60, 130, 255, 0.6); }
+      }
+      
+      @keyframes bounceIn {
+        0% { opacity: 0; transform: scale(0.3) translateY(30px); }
+        50% { opacity: 1; transform: scale(1.05) translateY(-10px); }
+        70% { transform: scale(0.9) translateY(0); }
+        100% { opacity: 1; transform: scale(1) translateY(0); }
+      }
+      
+      /* Enhanced Interactive Elements */
+      .icon-interactive {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      
+      .icon-interactive:hover {
+        transform: scale(1.1) rotate(5deg);
+      }
+      
+      /* Scroll animations */
+      .scroll-reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s ease-out;
+      }
+      
+      .scroll-reveal.revealed {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      
+      /* Sticky CTA */
+      .sticky-cta {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
+        transform: translateY(100px);
+        transition: transform 0.3s ease;
+      }
+      
+      .sticky-cta.visible {
+        transform: translateY(0);
+      }
+      
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+      
+      ::-webkit-scrollbar-thumb {
+        background: linear-gradient(45deg, #040066, #3C82FF);
+        border-radius: 3px;
+      }
+      
+      ::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(45deg, #3C82FF, #040066);
+      }
+
+      /* Modal Styles */
+      .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(5px);
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 20px;
+        z-index: 2000;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+      }
+      
+      .modal.active {
+        opacity: 1;
+        visibility: visible;
+      }
+      
+      .modal-content {
+        background: white;
+        border-radius: 20px;
+        padding: 2rem;
+        max-width: 500px;
+        width: 90%;
+        max-height: 90vh;
+        overflow-y: auto;
+        transform: scale(0.8);
+        transition: transform 0.3s ease;
+      }
+      
+      .modal.active .modal-content {
+        transform: scale(1);
+      }
+      
+      /* Progress Bar */
+      .progress-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #F00A0A, #FF3F3F, #3C82FF);
+        z-index: 1001;
+        transform-origin: left;
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
       }
     </style>
 </head>
@@ -166,234 +362,847 @@
     </noscript>
     <!-- End Google Tag Manager (noscript) -->
 
+    <!-- Progress Bar -->
+    <div class="progress-bar"></div>
+
     <!-- Hero Section -->
-    <section class="hero-bg text-white section-padding relative">
+    <section class="hero-bg text-white min-h-screen flex items-center relative overflow-hidden">
         <div class="container mx-auto px-4 relative z-10">
-            <div class="max-w-4xl mx-auto text-center">
-                <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-                    Join Jakala at EduWeb 2025
-                </h1>
-                <h2 class="text-2xl md:text-3xl mb-8 opacity-90 font-light">
-                    Reimagining Digital Experience in Higher Education
-                </h2>
-                <a href="#event" class="btn-primary text-lg inline-block">
-                    RSVP for Our Wine & Strategy Event
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Where to Find Us Section -->
-    <section class="section-padding" style="background-color: #E8E8E8;">
-        <div class="container mx-auto px-4">
-            <div class="max-w-4xl mx-auto text-center">
-                <h2 class="text-3xl font-bold mb-8 text-jblue-dark">Where to Find Us</h2>
-                <div class="flex flex-col md:flex-row items-center justify-center gap-8">
-                    <div class="flex items-center gap-4">
-                        <div class="icon-booth">📍</div>
-                        <div class="text-left">
-                            <h3 class="text-xl font-semibold text-jblue-dark">Visit us at</h3>
-                            <p class="text-lg text-jblue-primary">Booth 24</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-4">
-                        <div class="icon-booth">🕒</div>
-                        <div class="text-left">
-                            <h3 class="text-xl font-semibold text-jblue-dark">Conference Dates</h3>
-                            <p class="text-lg text-jblue-primary">July 15-17, 2025</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Session Section -->
-    <section class="section-padding bg-white">
-        <div class="container mx-auto px-4">
-            <div class="max-w-6xl mx-auto">
-                <div class="text-center mb-12">
-                    <h2 class="text-4xl font-bold mb-4 text-jblue-dark">Session</h2>
-                    <h3 class="text-2xl text-jblue-primary mb-8">Boosting Applications with a Modern Digital Experience</h3>
+            <div class="max-w-5xl mx-auto text-center">
+                <div class="animate-bounce-in">
+                    <h1 class="text-6xl md:text-8xl font-bold mb-8 leading-tight bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">
+                        Join Jakala at<br>
+                        <span class="text-jteal animate-pulse-slow">EduWeb 2025</span>
+                    </h1>
                 </div>
                 
-                <div class="grid md:grid-cols-2 gap-12 items-center">
-                    <div>
-                        <div class="bg-jgrey-lightest p-6 rounded-lg mb-6">
-                            <h4 class="text-xl font-semibold mb-3 text-jblue-dark">Session Details</h4>
-                            <div class="space-y-2 text-jblue-primary">
-                                <p><strong>Date:</strong> July 15, 2025</p>
-                                <p><strong>Time:</strong> 2:45–3:45 p.m.</p>
-                                <p><strong>Location:</strong> Rhode Island Room</p>
-                            </div>
-                        </div>
-                        
-                        <div class="mb-6">
-                            <h4 class="text-xl font-semibold mb-3 text-jblue-dark">Speakers</h4>
-                            <ul class="space-y-2 text-jblue-primary">
-                                <li>• <strong>Mandee Englert</strong> - Jakala</li>
-                                <li>• <strong>Jim Nourse</strong> - Penn State</li>
-                                <li>• <strong>Chaney Moore</strong></li>
-                            </ul>
-                        </div>
-                        
-                        <div class="mb-8">
-                            <h4 class="text-xl font-semibold mb-3 text-jblue-dark">Session Summary</h4>
-                            <p class="text-jblue-primary leading-relaxed">
-                                Discover how Jakala transformed Penn State's undergraduate enrollment experience through strategic information architecture, 
-                                personalized content journeys, and modern digital experience design. Learn practical approaches to boosting application 
-                                rates and improving student engagement through data-driven digital transformation.
-                            </p>
-                        </div>
-                        
-                        <a href="#slides" class="btn-primary">Download Slides</a>
-                    </div>
-                    
-                    <div class="text-center">
-                        <div class="qr-code mx-auto mb-4">
-                            <div>
-                                <div class="text-xs mb-2">QR Code</div>
-                                <div class="text-xs">jakala.com/higher-ed</div>
-                            </div>
-                        </div>
-                        <p class="text-sm text-jblue-primary">Scan for Higher Ed Solutions</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Off-Site Event Section -->
-    <section id="event" class="section-padding" style="background: linear-gradient(135deg, #F5F5F5 0%, #E8E8E8 100%);">
-        <div class="container mx-auto px-4">
-            <div class="max-w-6xl mx-auto">
-                <div class="text-center mb-12">
-                    <h2 class="text-4xl font-bold mb-4 text-jblue-dark">Off-Site Event</h2>
-                    <h3 class="text-2xl text-jred-primary mb-8">An Evening Discussing Digital Impact in Higher Ed</h3>
+                <div class="animate-slide-up" style="animation-delay: 0.3s; animation-fill-mode: both;">
+                    <h2 class="text-3xl md:text-4xl mb-12 opacity-90 font-light">
+                        Reimagining Digital Experience in Higher Education
+                    </h2>
                 </div>
                 
-                <div class="grid md:grid-cols-2 gap-12 items-center">
-                    <div>
-                        <div class="bg-white p-8 rounded-lg shadow-lg">
-                            <h4 class="text-2xl font-semibold mb-6 text-jblue-dark">Event Details</h4>
-                            <div class="space-y-4 mb-8">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-6 h-6 bg-jred-primary rounded-full flex items-center justify-center text-white text-sm">📅</div>
-                                    <span class="text-jblue-primary"><strong>Date:</strong> Wednesday, July 17, 2025</span>
-                                </div>
-                                <div class="flex items-center gap-3">
-                                    <div class="w-6 h-6 bg-jred-primary rounded-full flex items-center justify-center text-white text-sm">🕐</div>
-                                    <span class="text-jblue-primary"><strong>Time:</strong> 5:30–7:30 p.m.</span>
-                                </div>
-                                <div class="flex items-center gap-3">
-                                    <div class="w-6 h-6 bg-jred-primary rounded-full flex items-center justify-center text-white text-sm">📍</div>
-                                    <span class="text-jblue-primary"><strong>Location:</strong> Grippy Tannin's, Portland, ME</span>
-                                </div>
-                            </div>
-                            
-                            <div class="mb-8">
-                                <h5 class="text-lg font-semibold mb-3 text-jblue-dark">Featured Panel</h5>
-                                <p class="text-jblue-primary mb-4">Join industry leaders from:</p>
-                                <div class="flex flex-wrap gap-2">
-                                    <span class="bg-jblue-light text-white px-3 py-1 rounded-full text-sm">Penn State</span>
-                                    <span class="bg-jblue-light text-white px-3 py-1 rounded-full text-sm">Princeton</span>
-                                    <span class="bg-jblue-light text-white px-3 py-1 rounded-full text-sm">Yale</span>
-                                </div>
-                            </div>
-                            
-                            <a href="#rsvp" class="btn-secondary w-full text-center block">Reserve Your Spot</a>
-                        </div>
-                    </div>
+                <div class="animate-slide-up flex flex-col sm:flex-row gap-6 justify-center items-center" style="animation-delay: 0.6s; animation-fill-mode: both;">
+                    <a href="#event" class="btn-primary text-xl group">
+                        <span>Reserve Your Spot</span>
+                        <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                        </svg>
+                    </a>
                     
-                    <div>
-                        <div class="bg-white p-8 rounded-lg shadow-lg">
-                            <h4 class="text-2xl font-semibold mb-6 text-jblue-dark">What to Expect</h4>
-                            <div class="space-y-6">
-                                <div class="flex items-start gap-4">
-                                    <div class="w-12 h-12 bg-jred-light rounded-full flex items-center justify-center text-white">🦞</div>
-                                    <div>
-                                        <h5 class="font-semibold text-jblue-dark mb-1">Authentic Maine Cuisine</h5>
-                                        <p class="text-sm text-jblue-primary">Fresh lobster rolls and local specialties</p>
-                                    </div>
-                                </div>
-                                <div class="flex items-start gap-4">
-                                    <div class="w-12 h-12 bg-jred-light rounded-full flex items-center justify-center text-white">🍷</div>
-                                    <div>
-                                        <h5 class="font-semibold text-jblue-dark mb-1">Premium Wine Selection</h5>
-                                        <p class="text-sm text-jblue-primary">Curated wines paired with gourmet appetizers</p>
-                                    </div>
-                                </div>
-                                <div class="flex items-start gap-4">
-                                    <div class="w-12 h-12 bg-jred-light rounded-full flex items-center justify-center text-white">💬</div>
-                                    <div>
-                                        <h5 class="font-semibold text-jblue-dark mb-1">Strategic Networking</h5>
-                                        <p class="text-sm text-jblue-primary">Connect with higher ed digital leaders</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer Section -->
-    <footer class="section-padding text-white" style="background-color: #040066;">
-        <div class="container mx-auto px-4">
-            <div class="max-w-4xl mx-auto text-center">
-                <div class="mb-8">
-                    <div class="text-3xl font-bold mb-4">JAKALA</div>
-                    <p class="text-lg opacity-90 mb-8">
-                        Transforming digital experiences in higher education through data-driven innovation and strategic design.
-                    </p>
-                    <a href="https://www.jakala.com/higher-education" class="btn-primary text-lg">
-                        Explore our Higher Education Solutions
+                    <a href="#session" class="btn-secondary text-lg group">
+                        <span>View Session</span>
+                        <svg class="w-4 h-4 group-hover:translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                        </svg>
                     </a>
                 </div>
                 
-                <div class="border-t border-white border-opacity-20 pt-8 mt-8">
-                    <div class="flex flex-col md:flex-row justify-between items-center">
-                        <div class="text-sm opacity-70 mb-4 md:mb-0">
-                            © 2025 Jakala. All rights reserved.
+                <!-- Floating countdown timer -->
+                <div class="mt-16 animate-fade-in" style="animation-delay: 1s; animation-fill-mode: both;">
+                    <div class="glass-card inline-block px-8 py-4">
+                        <div class="text-sm opacity-80 mb-1">Event starts in</div>
+                        <div id="countdown" class="text-2xl font-bold text-jred-medium"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Animated background elements -->
+        <div class="absolute top-1/4 left-1/4 w-32 h-32 bg-jpurple rounded-full opacity-20 animate-float"></div>
+        <div class="absolute bottom-1/3 right-1/4 w-24 h-24 bg-jteal rounded-full opacity-30 animate-float" style="animation-delay: 2s;"></div>
+        <div class="absolute top-2/3 left-1/6 w-20 h-20 bg-jred-light rounded-full opacity-25 animate-float" style="animation-delay: 4s;"></div>
+    </section>
+
+    <!-- Where to Find Us Section -->
+    <section class="py-20 bg-gradient-to-br from-jgrey-lightest to-white relative">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16 scroll-reveal">
+                    <h2 class="text-5xl font-bold mb-6 text-jblue-dark">Where to Find Us</h2>
+                    <p class="text-xl text-jblue-primary max-w-2xl mx-auto">Join us at EduWeb 2025 in Portland, Maine for exclusive sessions and networking opportunities.</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Conference Location -->
+                    <div class="glass-card p-8 text-center group scroll-reveal">
+                        <div class="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-jblue-medium to-jblue-light rounded-2xl flex items-center justify-center icon-interactive">
+                            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
                         </div>
-                        <div class="flex gap-6 text-sm opacity-70">
-                            <a href="#" class="hover:opacity-100 transition-opacity">Privacy Policy</a>
-                            <a href="#" class="hover:opacity-100 transition-opacity">Terms of Service</a>
-                            <a href="#" class="hover:opacity-100 transition-opacity">Contact</a>
+                        <h3 class="text-2xl font-semibold text-jblue-dark mb-3">Visit Us at</h3>
+                        <p class="text-3xl font-bold text-jred-medium mb-2">Booth 24</p>
+                        <p class="text-jblue-primary">Come see our latest solutions</p>
+                    </div>
+                    
+                    <!-- Conference Dates -->
+                    <div class="glass-card p-8 text-center group scroll-reveal">
+                        <div class="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-jred-medium to-jred-light rounded-2xl flex items-center justify-center icon-interactive">
+                            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-jblue-dark mb-3">Conference Dates</h3>
+                        <p class="text-2xl font-bold text-jblue-medium mb-2">July 15-17, 2025</p>
+                        <p class="text-jblue-primary">Three days of innovation</p>
+                    </div>
+                    
+                    <!-- Location -->
+                    <div class="glass-card p-8 text-center group scroll-reveal md:col-span-2 lg:col-span-1">
+                        <div class="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-jteal to-jpurple rounded-2xl flex items-center justify-center icon-interactive">
+                            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-jblue-dark mb-3">Portland, Maine</h3>
+                        <p class="text-xl font-bold text-jpurple mb-2">Eastland Park Hotel</p>
+                        <p class="text-jblue-primary">Beautiful historic venue</p>
+                    </div>
+                </div>
+                
+                <!-- Quick Actions -->
+                <div class="text-center mt-12 scroll-reveal">
+                    <div class="inline-flex gap-4">
+                        <a href="#session" class="btn-secondary">
+                            View Our Session
+                        </a>
+                        <a href="#event" class="btn-primary">
+                            Book Wine Event
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Background decoration -->
+        <div class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-jpurple to-transparent opacity-10 rounded-full"></div>
+        <div class="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-jteal to-transparent opacity-10 rounded-full"></div>
+    </section>
+
+    <!-- Session Section -->
+    <section id="session" class="py-24 bg-white relative">
+        <div class="container mx-auto px-4">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-20 scroll-reveal">
+                    <h2 class="text-6xl font-bold mb-6 text-jblue-dark">Featured Session</h2>
+                    <h3 class="text-3xl text-jblue-primary mb-8 max-w-4xl mx-auto leading-tight">
+                        Boosting Applications with a Modern Digital Experience
+                    </h3>
+                    <div class="w-24 h-1 bg-gradient-to-r from-jred-medium to-jblue-light mx-auto"></div>
+                </div>
+                
+                <div class="grid lg:grid-cols-3 gap-12 mb-16">
+                    <!-- Session Details Card -->
+                    <div class="lg:col-span-2">
+                        <div class="glass-card p-8 mb-8 scroll-reveal">
+                            <div class="flex items-center mb-6">
+                                <div class="w-16 h-16 bg-gradient-to-br from-jblue-medium to-jblue-light rounded-2xl flex items-center justify-center mr-4">
+                                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </div>
+                                <h4 class="text-3xl font-semibold text-jblue-dark">Session Details</h4>
+                            </div>
+                            
+                            <div class="grid md:grid-cols-3 gap-6">
+                                <div class="text-center p-4 bg-gradient-to-br from-jgrey-lightest to-white rounded-xl">
+                                    <div class="text-sm text-jblue-primary mb-1">Date</div>
+                                    <div class="text-xl font-bold text-jblue-dark">July 15, 2025</div>
+                                </div>
+                                <div class="text-center p-4 bg-gradient-to-br from-jgrey-lightest to-white rounded-xl">
+                                    <div class="text-sm text-jblue-primary mb-1">Time</div>
+                                    <div class="text-xl font-bold text-jblue-dark">2:45–3:45 PM</div>
+                                </div>
+                                <div class="text-center p-4 bg-gradient-to-br from-jgrey-lightest to-white rounded-xl">
+                                    <div class="text-sm text-jblue-primary mb-1">Location</div>
+                                    <div class="text-xl font-bold text-jblue-dark">Rhode Island Room</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Session Summary -->
+                        <div class="glass-card p-8 scroll-reveal">
+                            <h4 class="text-2xl font-semibold mb-6 text-jblue-dark flex items-center">
+                                <svg class="w-6 h-6 mr-3 text-jred-medium" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                                </svg>
+                                What You'll Learn
+                            </h4>
+                            <p class="text-lg text-jblue-primary leading-relaxed mb-6">
+                                Discover how Jakala transformed Penn State's undergraduate enrollment experience through strategic information architecture, 
+                                personalized content journeys, and modern digital experience design.
+                            </p>
+                            
+                            <!-- Key Takeaways -->
+                            <div class="grid md:grid-cols-2 gap-4 mb-8">
+                                <div class="flex items-start">
+                                    <div class="w-8 h-8 bg-jred-light rounded-full flex items-center justify-center mr-3 mt-1">
+                                        <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </div>
+                                    <span class="text-jblue-primary">Strategic information architecture</span>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="w-8 h-8 bg-jred-light rounded-full flex items-center justify-center mr-3 mt-1">
+                                        <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </div>
+                                    <span class="text-jblue-primary">Personalized content journeys</span>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="w-8 h-8 bg-jred-light rounded-full flex items-center justify-center mr-3 mt-1">
+                                        <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </div>
+                                    <span class="text-jblue-primary">Data-driven digital transformation</span>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="w-8 h-8 bg-jred-light rounded-full flex items-center justify-center mr-3 mt-1">
+                                        <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </div>
+                                    <span class="text-jblue-primary">Boosting application rates</span>
+                                </div>
+                            </div>
+                            
+                            <a href="#download-modal" class="btn-primary group" onclick="openModal('download-modal')">
+                                <span>Download Slides</span>
+                                <svg class="w-5 h-5 group-hover:translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-4-4m4 4l4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Speakers & QR Code -->
+                    <div class="space-y-8">
+                        <!-- Speakers -->
+                        <div class="glass-card p-6 scroll-reveal">
+                            <h4 class="text-2xl font-semibold mb-6 text-jblue-dark flex items-center">
+                                <svg class="w-6 h-6 mr-3 text-jpurple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
+                                </svg>
+                                Featured Speakers
+                            </h4>
+                            
+                            <div class="space-y-4">
+                                <div class="speaker-card p-4 rounded-xl bg-gradient-to-r from-jgrey-lightest to-white hover:shadow-lg transition-all cursor-pointer" data-speaker="mandee">
+                                    <div class="flex items-center">
+                                        <div class="w-12 h-12 bg-gradient-to-br from-jred-medium to-jred-light rounded-full flex items-center justify-center mr-4">
+                                            <span class="text-white font-bold">ME</span>
+                                        </div>
+                                        <div>
+                                            <div class="font-semibold text-jblue-dark">Mandee Englert</div>
+                                            <div class="text-sm text-jblue-primary">Jakala</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="speaker-card p-4 rounded-xl bg-gradient-to-r from-jgrey-lightest to-white hover:shadow-lg transition-all cursor-pointer" data-speaker="jim">
+                                    <div class="flex items-center">
+                                        <div class="w-12 h-12 bg-gradient-to-br from-jblue-medium to-jblue-light rounded-full flex items-center justify-center mr-4">
+                                            <span class="text-white font-bold">JN</span>
+                                        </div>
+                                        <div>
+                                            <div class="font-semibold text-jblue-dark">Jim Nourse</div>
+                                            <div class="text-sm text-jblue-primary">Penn State</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="speaker-card p-4 rounded-xl bg-gradient-to-r from-jgrey-lightest to-white hover:shadow-lg transition-all cursor-pointer" data-speaker="chaney">
+                                    <div class="flex items-center">
+                                        <div class="w-12 h-12 bg-gradient-to-br from-jteal to-jpurple rounded-full flex items-center justify-center mr-4">
+                                            <span class="text-white font-bold">CM</span>
+                                        </div>
+                                        <div>
+                                            <div class="font-semibold text-jblue-dark">Chaney Moore</div>
+                                            <div class="text-sm text-jblue-primary">Industry Expert</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- QR Code -->
+                        <div class="glass-card p-6 text-center scroll-reveal">
+                            <h5 class="text-lg font-semibold mb-4 text-jblue-dark">Explore Our Solutions</h5>
+                            <div class="w-32 h-32 mx-auto mb-4 bg-white border-2 border-jgrey-light rounded-2xl flex items-center justify-center shadow-inner">
+                                <div class="text-center">
+                                    <div class="text-xs mb-2 text-jblue-primary">QR Code</div>
+                                    <div class="text-xs text-jblue-dark font-semibold">jakala.com/higher-ed</div>
+                                </div>
+                            </div>
+                            <p class="text-sm text-jblue-primary">Scan for Higher Ed Solutions</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        
+        <!-- Background decoration -->
+        <div class="absolute top-1/4 left-0 w-32 h-32 bg-gradient-to-r from-jpurple to-transparent opacity-5 rounded-full"></div>
+        <div class="absolute bottom-1/4 right-0 w-40 h-40 bg-gradient-to-l from-jteal to-transparent opacity-5 rounded-full"></div>
+    </section>
+
+    <!-- Off-Site Event Section -->
+    <section id="event" class="py-24 relative overflow-hidden" style="background: linear-gradient(135deg, #F5F5F5 0%, #E8E8E8 100%);">
+        <!-- Background Image Overlay -->
+        <div class="absolute inset-0 opacity-20">
+            <div class="w-full h-full bg-gradient-to-br from-jblue-dark via-jblue-medium to-jteal opacity-30"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-20 scroll-reveal">
+                    <h2 class="text-6xl font-bold mb-6 text-jblue-dark">Exclusive Wine & Strategy Event</h2>
+                    <h3 class="text-3xl text-jred-primary mb-8 max-w-4xl mx-auto">
+                        An Evening Discussing Digital Impact in Higher Education
+                    </h3>
+                    <div class="w-24 h-1 bg-gradient-to-r from-jred-medium to-jpurple mx-auto mb-8"></div>
+                    
+                    <!-- Event Countdown -->
+                    <div class="glass-card inline-block px-8 py-4">
+                        <div class="flex items-center gap-6">
+                            <div class="text-center">
+                                <div class="text-xs text-jblue-primary mb-1">Limited Spots</div>
+                                <div class="text-2xl font-bold text-jred-medium" id="spots-remaining">12</div>
+                            </div>
+                            <div class="w-px h-8 bg-jgrey-medium"></div>
+                            <div class="text-center">
+                                <div class="text-xs text-jblue-primary mb-1">Event Date</div>
+                                <div class="text-lg font-semibold text-jblue-dark">July 17, 2025</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid lg:grid-cols-2 gap-16 mb-16">
+                    <!-- Event Details -->
+                    <div class="scroll-reveal">
+                        <div class="glass-card p-10 relative">
+                            <!-- Premium Badge -->
+                            <div class="absolute -top-4 -right-4 bg-gradient-to-r from-jred-medium to-jred-light text-white px-6 py-2 rounded-2xl text-sm font-semibold shadow-lg">
+                                ✨ Invitation Only
+                            </div>
+                            
+                            <h4 class="text-3xl font-semibold mb-8 text-jblue-dark flex items-center">
+                                <svg class="w-8 h-8 mr-4 text-jred-medium" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                </svg>
+                                Event Details
+                            </h4>
+                            
+                            <div class="space-y-6 mb-10">
+                                <div class="flex items-center gap-4 p-4 bg-gradient-to-r from-white to-jgrey-lightest rounded-2xl">
+                                    <div class="w-14 h-14 bg-gradient-to-br from-jred-medium to-jred-light rounded-2xl flex items-center justify-center">
+                                        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <div class="text-sm text-jblue-primary">Date</div>
+                                        <div class="text-xl font-bold text-jblue-dark">Wednesday, July 17, 2025</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-center gap-4 p-4 bg-gradient-to-r from-white to-jgrey-lightest rounded-2xl">
+                                    <div class="w-14 h-14 bg-gradient-to-br from-jblue-medium to-jblue-light rounded-2xl flex items-center justify-center">
+                                        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <div class="text-sm text-jblue-primary">Time</div>
+                                        <div class="text-xl font-bold text-jblue-dark">5:30–7:30 PM</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-center gap-4 p-4 bg-gradient-to-r from-white to-jgrey-lightest rounded-2xl">
+                                    <div class="w-14 h-14 bg-gradient-to-br from-jteal to-jpurple rounded-2xl flex items-center justify-center">
+                                        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <div class="text-sm text-jblue-primary">Venue</div>
+                                        <div class="text-xl font-bold text-jblue-dark">Grippy Tannin's</div>
+                                        <div class="text-sm text-jpurple">Portland, Maine</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Featured Universities -->
+                            <div class="mb-8">
+                                <h5 class="text-xl font-semibold mb-4 text-jblue-dark flex items-center">
+                                    <svg class="w-5 h-5 mr-2 text-jpurple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                                    </svg>
+                                    Featured Panel Universities
+                                </h5>
+                                <div class="flex flex-wrap gap-3">
+                                    <div class="university-tag bg-gradient-to-r from-jblue-light to-jblue-medium text-white px-6 py-3 rounded-2xl text-sm font-semibold shadow-lg hover:shadow-xl transition-all cursor-pointer transform hover:scale-105">
+                                        🎓 Penn State
+                                    </div>
+                                    <div class="university-tag bg-gradient-to-r from-jpurple to-jblue-light text-white px-6 py-3 rounded-2xl text-sm font-semibold shadow-lg hover:shadow-xl transition-all cursor-pointer transform hover:scale-105">
+                                        🎓 Princeton
+                                    </div>
+                                    <div class="university-tag bg-gradient-to-r from-jteal to-jpurple text-white px-6 py-3 rounded-2xl text-sm font-semibold shadow-lg hover:shadow-xl transition-all cursor-pointer transform hover:scale-105">
+                                        🎓 Yale
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <a href="#rsvp-modal" class="btn-primary w-full text-center block text-xl group" onclick="openModal('rsvp-modal')">
+                                <span>Reserve Your Exclusive Spot</span>
+                                <svg class="w-6 h-6 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- What to Expect -->
+                    <div class="scroll-reveal">
+                        <div class="glass-card p-10">
+                            <h4 class="text-3xl font-semibold mb-8 text-jblue-dark flex items-center">
+                                <svg class="w-8 h-8 mr-4 text-jteal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+                                </svg>
+                                Premium Experience
+                            </h4>
+                            
+                            <div class="space-y-8">
+                                <div class="experience-item group p-6 rounded-2xl bg-gradient-to-r from-jgrey-lightest to-white hover:shadow-lg transition-all">
+                                    <div class="flex items-start gap-6">
+                                        <div class="w-16 h-16 bg-gradient-to-br from-jred-light to-jred-medium rounded-2xl flex items-center justify-center icon-interactive">
+                                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <h5 class="text-xl font-semibold text-jblue-dark mb-2">Authentic Maine Cuisine</h5>
+                                            <p class="text-jblue-primary leading-relaxed">Fresh lobster rolls, clam chowder, and locally-sourced seafood specialties prepared by Portland's top chefs.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="experience-item group p-6 rounded-2xl bg-gradient-to-r from-jgrey-lightest to-white hover:shadow-lg transition-all">
+                                    <div class="flex items-start gap-6">
+                                        <div class="w-16 h-16 bg-gradient-to-br from-jpurple to-jteal rounded-2xl flex items-center justify-center icon-interactive">
+                                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <h5 class="text-xl font-semibold text-jblue-dark mb-2">Curated Wine Selection</h5>
+                                            <p class="text-jblue-primary leading-relaxed">Premium wines carefully selected to complement Maine's coastal flavors, paired with artisanal appetizers.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="experience-item group p-6 rounded-2xl bg-gradient-to-r from-jgrey-lightest to-white hover:shadow-lg transition-all">
+                                    <div class="flex items-start gap-6">
+                                        <div class="w-16 h-16 bg-gradient-to-br from-jblue-medium to-jblue-light rounded-2xl flex items-center justify-center icon-interactive">
+                                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <h5 class="text-xl font-semibold text-jblue-dark mb-2">Strategic Networking</h5>
+                                            <p class="text-jblue-primary leading-relaxed">Connect with digital transformation leaders from top universities and explore partnership opportunities.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Floating elements -->
+        <div class="absolute top-10 right-10 w-20 h-20 bg-gradient-to-br from-jpurple to-transparent opacity-20 rounded-full animate-float"></div>
+        <div class="absolute bottom-20 left-10 w-16 h-16 bg-gradient-to-br from-jteal to-transparent opacity-20 rounded-full animate-float" style="animation-delay: 3s;"></div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="py-20 text-white relative overflow-hidden" style="background: linear-gradient(135deg, #040066 0%, #1941FA 100%);">
+        <div class="absolute inset-0">
+            <div class="w-full h-full bg-mesh-overlay opacity-20"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-12 mb-16">
+                    <!-- Company Info -->
+                    <div class="lg:col-span-1">
+                        <div class="text-5xl font-bold mb-6 bg-gradient-to-r from-white to-jteal bg-clip-text text-transparent">
+                            JAKALA
+                        </div>
+                        <p class="text-xl opacity-90 mb-8 leading-relaxed">
+                            Transforming digital experiences in higher education through data-driven innovation and strategic design.
+                        </p>
+                        <div class="flex gap-4">
+                            <a href="https://www.jakala.com/higher-education" class="btn-primary">
+                                Our Solutions
+                            </a>
+                            <a href="#rsvp-modal" class="btn-secondary" onclick="openModal('rsvp-modal')">
+                                Join Event
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Links -->
+                    <div>
+                        <h5 class="text-xl font-semibold mb-6">Quick Links</h5>
+                        <div class="space-y-3">
+                            <a href="#session" class="block hover:text-jteal transition-colors">Featured Session</a>
+                            <a href="#event" class="block hover:text-jteal transition-colors">Wine & Strategy Event</a>
+                            <a href="#download-modal" class="block hover:text-jteal transition-colors" onclick="openModal('download-modal')">Download Slides</a>
+                            <a href="https://www.jakala.com" class="block hover:text-jteal transition-colors">About Jakala</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Contact Info -->
+                    <div>
+                        <h5 class="text-xl font-semibold mb-6">Get in Touch</h5>
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-3">
+                                <svg class="w-5 h-5 text-jteal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                                <span>Booth 24, EduWeb 2025</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <svg class="w-5 h-5 text-jpurple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                </svg>
+                                <span>higher-ed@jakala.com</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <svg class="w-5 h-5 text-jred-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                                </svg>
+                                <span>Schedule a Call</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="border-t border-white border-opacity-20 pt-8">
+                    <div class="flex flex-col md:flex-row justify-between items-center">
+                        <div class="text-sm opacity-70 mb-4 md:mb-0">
+                            © 2025 Jakala. All rights reserved. • Transforming Higher Education Since 2016
+                        </div>
+                        <div class="flex gap-6 text-sm opacity-70">
+                            <a href="#" class="hover:opacity-100 hover:text-jteal transition-all">Privacy Policy</a>
+                            <a href="#" class="hover:opacity-100 hover:text-jteal transition-all">Terms of Service</a>
+                            <a href="#" class="hover:opacity-100 hover:text-jteal transition-all">Contact</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Background decoration -->
+        <div class="absolute top-0 left-0 w-40 h-40 bg-gradient-to-br from-jteal to-transparent opacity-10 rounded-full"></div>
+        <div class="absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-tl from-jpurple to-transparent opacity-10 rounded-full"></div>
     </footer>
 
-    <!-- Smooth Scrolling Script -->
+    <!-- Sticky CTA Button -->
+    <div class="sticky-cta">
+        <a href="#rsvp-modal" class="btn-primary shadow-2xl animate-glow" onclick="openModal('rsvp-modal')">
+            <span>Reserve Spot</span>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+            </svg>
+        </a>
+    </div>
+
+    <!-- RSVP Modal -->
+    <div id="rsvp-modal" class="modal">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-jblue-dark">Reserve Your Exclusive Spot</h3>
+                <button onclick="closeModal('rsvp-modal')" class="text-jgrey-dark hover:text-jblue-dark text-2xl">&times;</button>
+            </div>
+            
+            <div class="mb-6">
+                <div class="glass-card p-4 mb-4">
+                    <div class="flex items-center justify-between">
+                        <span class="text-jblue-primary">Spots Remaining:</span>
+                        <span class="text-xl font-bold text-jred-medium" id="modal-spots">12</span>
+                    </div>
+                </div>
+                
+                <p class="text-jblue-primary mb-6">Join us for an exclusive evening of wine, cuisine, and strategic discussions about the future of higher education digital transformation.</p>
+            </div>
+            
+            <form class="space-y-4">
+                <div>
+                    <label class="block text-sm font-semibold text-jblue-dark mb-2">Full Name *</label>
+                    <input type="text" required class="w-full px-4 py-3 border border-jgrey-light rounded-xl focus:ring-2 focus:ring-jblue-light focus:border-transparent">
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-semibold text-jblue-dark mb-2">Email Address *</label>
+                    <input type="email" required class="w-full px-4 py-3 border border-jgrey-light rounded-xl focus:ring-2 focus:ring-jblue-light focus:border-transparent">
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-semibold text-jblue-dark mb-2">University/Organization</label>
+                    <input type="text" class="w-full px-4 py-3 border border-jgrey-light rounded-xl focus:ring-2 focus:ring-jblue-light focus:border-transparent">
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-semibold text-jblue-dark mb-2">Role/Title</label>
+                    <input type="text" class="w-full px-4 py-3 border border-jgrey-light rounded-xl focus:ring-2 focus:ring-jblue-light focus:border-transparent">
+                </div>
+                
+                <div class="pt-4">
+                    <button type="submit" class="btn-primary w-full">
+                        <span>Confirm Reservation</span>
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Download Modal -->
+    <div id="download-modal" class="modal">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-jblue-dark">Download Session Materials</h3>
+                <button onclick="closeModal('download-modal')" class="text-jgrey-dark hover:text-jblue-dark text-2xl">&times;</button>
+            </div>
+            
+            <div class="text-center mb-6">
+                <div class="w-24 h-24 bg-gradient-to-br from-jblue-medium to-jblue-light rounded-2xl mx-auto mb-4 flex items-center justify-center">
+                    <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-4-4m4 4l4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                <h4 class="text-xl font-semibold text-jblue-dark mb-2">Session Slides & Resources</h4>
+                <p class="text-jblue-primary">Get exclusive access to our presentation materials and case study data.</p>
+            </div>
+            
+            <form class="space-y-4">
+                <div>
+                    <label class="block text-sm font-semibold text-jblue-dark mb-2">Email Address *</label>
+                    <input type="email" required placeholder="your.email@university.edu" class="w-full px-4 py-3 border border-jgrey-light rounded-xl focus:ring-2 focus:ring-jblue-light focus:border-transparent">
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-semibold text-jblue-dark mb-2">Organization</label>
+                    <input type="text" placeholder="Your University/Organization" class="w-full px-4 py-3 border border-jgrey-light rounded-xl focus:ring-2 focus:ring-jblue-light focus:border-transparent">
+                </div>
+                
+                <div class="pt-4">
+                    <button type="submit" class="btn-primary w-full">
+                        <span>Download Materials</span>
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-4-4m4 4l4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Enhanced JavaScript -->
     <script>
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+        // Progress bar animation
+        function updateProgressBar() {
+            const progressBar = document.querySelector('.progress-bar');
+            const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            progressBar.style.transform = `scaleX(${Math.min(scrollPercent, 100) / 100})`;
+        }
+
+        // Scroll reveal animation
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.scroll-reveal');
+            
+            reveals.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('revealed');
+                }
+            });
+        }
+
+        // Sticky CTA visibility
+        function toggleStickyCTA() {
+            const stickyCTA = document.querySelector('.sticky-cta');
+            const heroSection = document.querySelector('.hero-bg');
+            const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+            
+            if (window.scrollY > heroBottom) {
+                stickyCTA.classList.add('visible');
+            } else {
+                stickyCTA.classList.remove('visible');
+            }
+        }
+
+        // Countdown timer
+        function updateCountdown() {
+            const eventDate = new Date('July 17, 2025 17:30:00').getTime();
+            const now = new Date().getTime();
+            const distance = eventDate - now;
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            
+            const countdownElement = document.getElementById('countdown');
+            if (countdownElement) {
+                if (distance > 0) {
+                    countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m`;
+                } else {
+                    countdownElement.innerHTML = 'Event Started!';
+                }
+            }
+        }
+
+        // Modal functions
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal on outside click
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeModal(this.id);
                 }
             });
         });
 
-        // Track button clicks with GTM
-        document.querySelectorAll('.btn-primary, .btn-secondary').forEach(button => {
-            button.addEventListener('click', function() {
-                if (typeof gtag !== 'undefined') {
-                    gtag('event', 'click', {
-                        'event_category': 'CTA',
-                        'event_label': this.textContent.trim()
+        // Spots remaining animation
+        function animateSpots() {
+            const spotsElements = document.querySelectorAll('#spots-remaining, #modal-spots');
+            let currentSpots = 12;
+            
+            setInterval(() => {
+                if (Math.random() < 0.1 && currentSpots > 5) { // 10% chance every interval
+                    currentSpots--;
+                    spotsElements.forEach(el => {
+                        el.textContent = currentSpots;
+                        el.style.animation = 'bounce-in 0.5s ease-out';
+                        setTimeout(() => el.style.animation = '', 500);
                     });
                 }
+            }, 15000); // Check every 15 seconds
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                if (targetId && !targetId.includes('modal')) {
+                    const target = document.getElementById(targetId);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
             });
+        });
+
+        // Enhanced analytics tracking
+        function trackEvent(action, category, label) {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', action, {
+                    'event_category': category,
+                    'event_label': label
+                });
+            }
+        }
+
+        // Track button clicks
+        document.querySelectorAll('.btn-primary, .btn-secondary').forEach(button => {
+            button.addEventListener('click', function() {
+                trackEvent('click', 'CTA', this.textContent.trim());
+            });
+        });
+
+        // Track scroll depth
+        let maxScrollPercentage = 0;
+        function trackScrollDepth() {
+            const scrollPercent = Math.round((window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100);
+            if (scrollPercent > maxScrollPercentage) {
+                maxScrollPercentage = scrollPercent;
+                if (maxScrollPercentage % 25 === 0) { // Track at 25%, 50%, 75%, 100%
+                    trackEvent('scroll', 'Scroll Depth', `${maxScrollPercentage}%`);
+                }
+            }
+        }
+
+        // Form submissions
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const formType = this.closest('.modal').id;
+                trackEvent('form_submit', 'Form', formType);
+                
+                // Show success message (simplified)
+                alert('Thank you! We\'ll be in touch soon.');
+                closeModal(formType);
+            });
+        });
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCountdown();
+            setInterval(updateCountdown, 60000); // Update every minute
+            
+            animateSpots();
+            
+            // Set up scroll listeners
+            window.addEventListener('scroll', function() {
+                updateProgressBar();
+                revealOnScroll();
+                toggleStickyCTA();
+                trackScrollDepth();
+            });
+            
+            // Initial calls
+            updateProgressBar();
+            revealOnScroll();
+            toggleStickyCTA();
+        });
+
+        // Keyboard navigation for modals
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal.active').forEach(modal => {
+                    closeModal(modal.id);
+                });
+            }
         });
     </script>
 </body>
